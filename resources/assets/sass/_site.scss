@@ -1,0 +1,24 @@
+// Body flexbox layout
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+// Feed reader
+#app {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+.reader {
+    display: flex;
+    flex: 1;
+}
+.reader-list {
+    width: 20rem;
+}
+.reader-content {
+    position: relative;
+    flex: 1;
+}
