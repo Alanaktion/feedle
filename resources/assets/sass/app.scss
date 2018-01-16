@@ -4,5 +4,8 @@
 // Bootstrap
 @import "~bootstrap/scss/bootstrap";
 
+// Feedle components
+$reader-list-bg: mix(theme-color('light'), $body-bg);
+
 // Site styles
 @import "site";

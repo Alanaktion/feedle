@@ -94,5 +94,8 @@ $link-hover-color: lighten($primary, 10%);
 // Bootstrap
 @import "~bootstrap/scss/bootstrap";
 
+// Feedle components
+$reader-list-bg: mix(theme-color('dark'), $body-bg);
+
 // Site styles
 @import "site";

@@ -12,5 +12,11 @@ let mix = require('laravel-mix');
  */
 
 mix.js('resources/assets/js/app.js', 'public/js')
+    .extract([
+        'axios',
+        'jquery/dist/jquery.slim',
+        'popper.js/dist/umd/popper',
+        'bootstrap',
+    ])
     .sass('resources/assets/sass/app.scss', 'public/css')
     .sass('resources/assets/sass/app-dark.scss', 'public/css');
