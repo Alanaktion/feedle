@@ -8,13 +8,12 @@
                 My Feeds
             </span>
             <div class="ml-auto">
-                <button class="btn btn-secondary" title="Add Feed" data-toggle="tooltip">
-                    <span class="sr-only">Add Feed</span>
+                <button type="button" class="btn btn-secondary" title="Add Feed" aria-label="Add Feed"
+                    data-hover="tooltip" data-toggle="modal" data-target="#mdl-add-feed">
                     <span aria-hidden="true">+</span>
                 </button>
             </div>
         </nav>
-
         {{-- List of recent posts here --}}
     </div>
     <div class="reader-content">
@@ -24,4 +23,5 @@
         </p>
     </div>
 </div>
+@include('blocks.modal-add-feed')
 @endsection

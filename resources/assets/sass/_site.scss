@@ -1,3 +1,13 @@
+// Animations
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(359deg);
+    }
+}
+
 // Body flexbox layout
 body {
     display: flex;
@@ -22,4 +32,30 @@ body {
 .reader-content {
     position: relative;
     flex: 1;
+}
+
+.is-loading {
+    position: relative;
+    min-height: 2rem;
+    &.btn {
+        color: transparent !important;
+        pointer-events: none;
+    }
+    &[data-content="result"] {
+        margin-top: $spacer;
+    }
+    &:after {
+        content: '';
+        position: absolute;
+        display: block;
+        left: calc(50% - (1em / 2));
+        top: calc(50% - (1em / 2));
+        height: 1em;
+        width: 1em;
+        animation: spin 0.75s infinite linear;
+        border: 2px solid $body-color;
+        border-radius: 2em;
+        border-right-color: transparent;
+        border-top-color: transparent;
+    }
 }

@@ -15,4 +15,6 @@ Route::get('/', 'IndexController@index')->name('index');
 
 Auth::routes();
 
-Route::get('/feeds', 'HomeController@index')->name('home');
+Route::get('/feeds', 'HomeController@index')->name('feeds');
+Route::get('/feedSearch', 'HomeController@feedSearch')->name('feedSearch');
+Route::post('/feedAdd', 'HomeController@feedAdd')->name('feedAdd');
