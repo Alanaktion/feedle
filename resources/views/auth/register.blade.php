@@ -15,12 +15,11 @@
 
                             <div class="col-lg-6">
                                 <input
-                                        type="text"
-                                        class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
-                                        name="name"
-                                        value="{{ old('name') }}"
-                                        required
-                                >
+                                    type="text"
+                                    class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
+                                    name="name"
+                                    value="{{ old('name') }}"
+                                    required>
                                 @if ($errors->has('name'))
                                     <div class="invalid-feedback">
                                         <strong>{{ $errors->first('name') }}</strong>
@@ -34,13 +33,11 @@
 
                             <div class="col-lg-6">
                                 <input
-                                        type="email"
-                                        class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                                        name="email"
-                                        value="{{ old('email') }}"
-                                        required
-                                >
-
+                                    type="email"
+                                    class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
+                                    name="email"
+                                    value="{{ old('email') }}"
+                                    required>
                                 @if ($errors->has('email'))
                                     <div class="invalid-feedback">
                                         <strong>{{ $errors->first('email') }}</strong>
@@ -54,11 +51,10 @@
 
                             <div class="col-lg-6">
                                 <input
-                                        type="password"
-                                        class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
-                                        name="password"
-                                        required
-                                >
+                                    type="password"
+                                    class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
+                                    name="password"
+                                    required>
                                 @if ($errors->has('password'))
                                     <div class="invalid-feedback">
                                         <strong>{{ $errors->first('password') }}</strong>
@@ -72,11 +68,10 @@
 
                             <div class="col-lg-6">
                                 <input
-                                        type="password"
-                                        class="form-control{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}"
-                                        name="password_confirmation"
-                                        required
-                                >
+                                    type="password"
+                                    class="form-control{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}"
+                                    name="password_confirmation"
+                                    required>
                                 @if ($errors->has('password_confirmation'))
                                     <div class="invalid-feedback">
                                         <strong>{{ $errors->first('password_confirmation') }}</strong>

@@ -15,15 +15,13 @@
 
                             <div class="col-lg-6">
                                 <input
-                                        id="email"
-                                        type="email"
-                                        class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                                        name="email"
-                                        value="{{ old('email') }}"
-                                        required
-                                        autofocus
-                                >
-
+                                    id="email"
+                                    type="email"
+                                    class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
+                                    name="email"
+                                    value="{{ old('email') }}"
+                                    required
+                                    autofocus>
                                 @if ($errors->has('email'))
                                     <div class="invalid-feedback">
                                         <strong>{{ $errors->first('email') }}</strong>
@@ -37,13 +35,11 @@
 
                             <div class="col-lg-6">
                                 <input
-                                        id="password"
-                                        type="password"
-                                        class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
-                                        name="password"
-                                        required
-                                >
-
+                                    id="password"
+                                    type="password"
+                                    class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
+                                    name="password"
+                                    required>
                                 @if ($errors->has('password'))
                                     <div class="invalid-feedback">
                                         <strong>{{ $errors->first('password') }}</strong>
@@ -54,10 +50,9 @@
 
                         <div class="form-group row">
                             <div class="col-lg-6 offset-lg-4">
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-                                    </label>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="remember" name="remember" {{ old('remember') ? 'checked' : '' }}>
+                                    <label class="custom-control-label" for="remember">Remember me</label>
                                 </div>
                             </div>
                         </div>
