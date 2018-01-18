@@ -26,4 +26,20 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Get the subscriptions for the feed
+     */
+    public function subscriptions()
+    {
+        return $this->hasMany('App\FeedSubscription');
+    }
+
+    /**
+     * Get the Posts from the subscription
+     */
+    public function posts()
+    {
+        return $this->hasMany('App\FeedPost');
+    }
 }

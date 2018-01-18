@@ -53,9 +53,7 @@ require(['jquery', 'bootstrap', 'axios'], function ($, Bootstrap, axios) {
                 var action = $form.attr('action');
                 var url = $input.val();
                 axios.post(action, {
-                    params: {
-                        url: url
-                    }
+                    url: url
                 }).then((response) => {
                     $modal.modal('hide');
                 }).catch((error) => {
@@ -64,5 +62,15 @@ require(['jquery', 'bootstrap', 'axios'], function ($, Bootstrap, axios) {
 
                 e.preventDefault();
             });
+
+        // Handle post selection
+        $('.list-group').on('click', '[data-toggle="reader"]', function (e) {
+            // TODO: mark post as read
+            var $iframe = $('iframe[data-reader]');
+            if ($iframe.hasClass('hidden')) {
+                $('[data-reader-placeholder]').addClass('hidden');
+                $iframe.removeClass('hidden');
+            }
+        });
     });
 })
