@@ -43,6 +43,15 @@ body {
     border: none;
 }
 
+.btn .octicon {
+    width: 1rem;
+    height: 1rem;
+    padding-top: .25rem;
+    path {
+        fill: color-yiq(theme-color("secondary"));
+    }
+}
+
 .is-loading {
     position: relative;
     min-height: 2rem;
