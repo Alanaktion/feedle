@@ -20,7 +20,7 @@ class Feed extends Model
      */
     const POST_TIME_THRESHOLD = 3600;
 
-    protected $fillable = ['name', 'url'];
+    protected $fillable = ['name', 'url', 'site_url'];
 
     /**
      * Create a feed from an RSS/Atom URL
@@ -43,6 +43,7 @@ class Feed extends Model
         return self::create([
             'name' => $meta['title'],
             'url' => $meta['url'],
+            'site_url' => $meta['site_url'],
         ]);
     }
 
@@ -65,6 +66,8 @@ class Feed extends Model
             return null;
         }
 
+        $siteUrl = $url;
+
         // Atom
         if ($xml->getName() == 'feed') {
             $posts = [];
@@ -76,9 +79,16 @@ class Feed extends Model
                     'ts' => strtotime((string)$entry->updated),
                 ];
             }
+            foreach ($xml->link as $link) {
+                if (!array_key_exists('rel', $link->attributes())) {
+                    $siteUrl = (string)$link->attributes()['href'];
+                    break;
+                }
+            }
             return [
                 'title' => (string)$xml->title,
                 'url' => $url,
+                'site_url' => $siteUrl,
                 'posts' => $posts
             ];
         }
@@ -88,8 +98,9 @@ class Feed extends Model
             $xml->getName() == 'rss' &&
             $xml->attributes()['version'] == '2.0'
         ) {
+            $channel = $xml->channel[0];
             $posts = [];
-            foreach ($xml->channel[0]->item as $item) {
+            foreach ($channel->item as $item) {
                 $posts[] = [
                     'title' => (string)$item->title,
                     'guid' => (string)$item->guid ?? (string)$item->link,
@@ -97,9 +108,13 @@ class Feed extends Model
                     'ts' => isset($item->pubDate) ? strtotime((string)$item->pubDate) : null,
                 ];
             }
+            if ($channel->link) {
+                $siteUrl = (string)$channel0->link;
+            }
             return [
-                'title' => (string)$xml->channel[0]->title,
+                'title' => (string)$channel->title,
                 'url' => $url,
+                'site_url' => $siteUrl,
                 'posts' => $posts
             ];
         }
