@@ -15,9 +15,9 @@ class UpdateFeeds extends Migration
     {
         Schema::table('feeds', function (Blueprint $table) {
             $table->dateTime('last_check')->nullable()->change();
-            $table->renameColumn('uuid', 'guid');
         });
         Schema::table('feed_posts', function (Blueprint $table) {
+            $table->renameColumn('uuid', 'guid');
             $table->string('url')->after('is_read');
         });
     }
@@ -31,9 +31,9 @@ class UpdateFeeds extends Migration
     {
         Schema::table('feeds', function (Blueprint $table) {
             $table->dateTime('last_check')->change();
-            $table->renameColumn('guid', 'uuid');
         });
         Schema::table('feed_posts', function (Blueprint $table) {
+            $table->renameColumn('guid', 'uuid');
             $table->dropColumn('url');
         });
     }
