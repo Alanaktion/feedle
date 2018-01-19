@@ -20,7 +20,7 @@
                         </button>
                     </div>
                 </form>
-                <div data-content="result"></div>
+                <div data-content="result" data-empty="modal-close"></div>
             </div>
         </div>
     </div>

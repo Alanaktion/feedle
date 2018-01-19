@@ -230,3 +230,4 @@ class Feed extends Model
         return $this->hasMany('App\FeedPost');
     }
 }
+

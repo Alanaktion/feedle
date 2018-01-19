@@ -12,9 +12,10 @@ require(['jquery', 'bootstrap', 'axios'], function ($, Bootstrap, axios) {
 
         // Clear forms when modals are closed
         $('.modal').on('hidden.bs.modal', function (e) {
-            $(this).find('form').each(function() {
+            $('form', this).each(function() {
                 this.reset();
             });
+            $('[data-empty="modal-close"]', this).empty();
         });
 
         // Handle Add Feed form submit
@@ -73,4 +74,5 @@ require(['jquery', 'bootstrap', 'axios'], function ($, Bootstrap, axios) {
             }
         });
     });
-})
+});
+
