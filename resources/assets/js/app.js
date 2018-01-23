@@ -65,8 +65,13 @@ require(['jquery', 'bootstrap', 'axios'], function ($, Bootstrap, axios) {
             });
 
         // Handle post selection
-        $('.list-group').on('click', '[data-toggle="reader"]', function (e) {
-            // TODO: mark post as read
+        $('#app').on('click', '[data-toggle="reader"]', function (e) {
+            axios.post(route('postUpdate'), {
+                id: $(this).attr('data-id'),
+                is_read: 1,
+            }).catch((error) => {
+                console.error(error);
+            });
             var $iframe = $('iframe[data-reader]');
             if ($iframe.hasClass('hidden')) {
                 $('[data-reader-placeholder]').addClass('hidden');
@@ -75,4 +80,3 @@ require(['jquery', 'bootstrap', 'axios'], function ($, Bootstrap, axios) {
         });
     });
 });
-

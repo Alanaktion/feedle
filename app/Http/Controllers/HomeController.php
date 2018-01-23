@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Feed;
 use App\FeedPost;
 use App\FeedSubscription;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class HomeController extends Controller
 {
@@ -28,9 +29,14 @@ class HomeController extends Controller
     public function index()
     {
         $subscriptions = FeedSubscription::with('feed')
-            ->where('user_id', Auth::id())->get();
+            ->where('user_id', '=', Auth::id())
+            ->get();
         $posts = FeedPost::with('feed')
-            ->where('user_id', Auth::id())->get();
+            ->where([
+                ['user_id', '=', Auth::id()],
+                ['is_read', '=', false],
+            ])
+            ->get();
         return view('home', [
             'subscriptions' => $subscriptions,
             'posts' => $posts
@@ -82,5 +88,22 @@ class HomeController extends Controller
             ]);
         }
         return $feed;
+    }
+
+    /**
+     * Update a feed post's is_read status
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function feedPostUpdate(Request $request)
+    {
+        $feedPost = FeedPost::findOrFail($request->input('id'));
+        if ($feedPost->user_id != Auth::id()) {
+            throw new \Illuminate\Database\Eloquent\ModelNotFoundException;
+        }
+        $feedPost->is_read = $request->input('is_read');
+        $feedPost->save();
+        return $feedPost;
     }
 }

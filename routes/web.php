@@ -12,9 +12,11 @@
 */
 
 Route::get('/', 'IndexController@index')->name('index');
+Route::get('/routes.js', 'StaticController@routesJs')->name('routes.js');
 
 Auth::routes();
 
 Route::get('/feeds', 'HomeController@index')->name('feeds');
 Route::get('/feedSearch', 'HomeController@feedSearch')->name('feedSearch');
 Route::post('/feedAdd', 'HomeController@feedAdd')->name('feedAdd');
+Route::post('/postUpdate', 'HomeController@feedPostUpdate')->name('postUpdate');

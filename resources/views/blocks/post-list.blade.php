@@ -8,7 +8,7 @@
     </a>
 @empty
     <div class="list-group-item disabled text-center">
-        No posts yet.
+        No unread posts.
     </div>
 @endforelse
 </div>
