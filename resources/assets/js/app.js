@@ -73,10 +73,38 @@ require(['jquery', 'bootstrap', 'axios'], function ($, Bootstrap, axios) {
                 console.error(error);
             });
             var $iframe = $('iframe[data-reader]');
-            if ($iframe.hasClass('hidden')) {
-                $('[data-reader-placeholder]').addClass('hidden');
-                $iframe.removeClass('hidden');
+            if ($iframe.hasClass('d-none')) {
+                $('[data-reader-placeholder]').addClass('d-none');
+                $iframe.removeClass('d-none');
             }
+        });
+
+        // Handle subscription selection
+        // Shows the subscription details and post list
+        $('#app').on('click', '[data-toggle="post-list"]', function (e) {
+            $('#feeds').children().remove();
+            $('<div />').addClass('is-loading').appendTo('#feeds');
+            axios.get(route('feedSubscription'), {
+                params: {
+                    id: $(this).attr('data-id')
+                }
+            }).then((response) => {
+                $('#feeds').html(response.data);
+            }).catch((error) => {
+                console.error(error);
+            });
+            e.preventDefault();
+        });
+
+        // Handle back button on subscription details
+        $('#app').on('click', '[data-toggle="feed-list"]', function (e) {
+            $('#feeds').children().remove();
+            $('<div />').addClass('is-loading').appendTo('#feeds');
+            axios.get(route('feedList')).then((response) => {
+                $('#feeds').html(response.data);
+            }).catch((error) => {
+                console.error(error);
+            });
         });
     });
 });
