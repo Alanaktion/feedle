@@ -44,6 +44,19 @@ class HomeController extends Controller
     }
 
     /**
+     * Get feed list view
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function feedList()
+    {
+        $subscriptions = FeedSubscription::with('feed')
+            ->where('user_id', '=', Auth::id())
+            ->get();
+        return view('blocks.feed-list', ['subscriptions' => $subscriptions]);
+    }
+
+    /**
      * Search for feeds to add
      *
      * @return \Illuminate\Http\Response

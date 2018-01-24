@@ -56,6 +56,14 @@ require(['jquery', 'bootstrap', 'axios'], function ($, Bootstrap, axios) {
                 axios.post(action, {
                     url: url
                 }).then((response) => {
+                    $('#feeds').addClass('is-loading');
+                    axios.get(route('feedList')).then((response) => {
+                        $('#feeds')
+                            .removeClass('is-loading')
+                            .html(response.data);
+                    }).catch((error) => {
+                        location.reload();
+                    });
                     $modal.modal('hide');
                 }).catch((error) => {
                     console.error(error);
