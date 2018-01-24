@@ -86,7 +86,14 @@ body {
     margin-left: -.125rem;
     margin-right: -.125rem;
     path {
-        fill: color-yiq(theme-color("secondary"));
+        fill: color-yiq(theme-color('secondary'));
+    }
+}
+.list-group-item .octicon {
+    width: 4rem;
+    height: 4rem;
+    path {
+        fill: theme-color('secondary');
     }
 }
 
