@@ -143,17 +143,4 @@ class HomeController extends Controller
             'posts' => $posts
         ]);
     }
-
-    /**
-     * Show the list of feed subscriptions
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function feedList()
-    {
-        $subscriptions = FeedSubscription::with('feed')
-            ->where('user_id', '=', Auth::id())
-            ->get();
-        return view('blocks.feed-list', ['subscriptions' => $subscriptions]);
-    }
 }
