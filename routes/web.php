@@ -19,5 +19,7 @@ Auth::routes();
 Route::get('/feeds', 'HomeController@index')->name('feeds');
 Route::get('/feedList', 'HomeController@feedList')->name('feedList');
 Route::get('/feedSearch', 'HomeController@feedSearch')->name('feedSearch');
+Route::get('/feedSubscription', 'HomeController@feedSubscription')->name('feedSubscription');
+Route::get('/feedList', 'HomeController@feedList')->name('feedList');
 Route::post('/feedAdd', 'HomeController@feedAdd')->name('feedAdd');
 Route::post('/postUpdate', 'HomeController@feedPostUpdate')->name('postUpdate');

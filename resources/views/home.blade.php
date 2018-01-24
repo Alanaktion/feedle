@@ -21,7 +21,9 @@
             <div class="ml-auto">
                 <button type="button" class="btn btn-secondary" title="Add Feed" aria-label="Add Feed"
                     data-hover="tooltip" data-toggle="modal" data-target="#mdl-add-feed">
-                    <span aria-hidden="true">+</span>
+                    <svg class="octicon octicon-plus" viewBox="0 0 12 16" version="1.1" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M12 9H7v5H5V9H0V7h5V2h2v5h5z"></path>
+                    </svg>
                 </button>
             </div>
         </div>
@@ -39,7 +41,7 @@
         <p class="text-muted text-center mt-5" data-reader-placeholder>
             Select a post on the left to start reading.
         </p>
-        <iframe src="about:blank" frameborder="0" class="reader-iframe hidden" name="reader" data-reader></iframe>
+        <iframe src="about:blank" frameborder="0" class="reader-iframe d-none" name="reader" data-reader></iframe>
     </div>
 </div>
 @include('blocks.modal-add-feed')

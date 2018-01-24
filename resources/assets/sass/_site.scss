@@ -29,6 +29,40 @@ body {
     width: 20rem;
     background-color: $reader-list-bg;
 }
+.sub-topbar {
+    display: flex;
+    width: 100%;
+    padding-bottom: 1rem;
+}
+.sub-topbar-title {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    line-height: 2.25rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.post {
+    position: relative;
+    &::before {
+        content: '';
+        position: absolute;
+        top: .5rem;
+        right: .5rem;
+        width: .75rem;
+        height: .75rem;
+        background-color: theme-color('primary');
+        border-radius: .375rem;
+    }
+    &.is-read::before {
+        background-color: transparent;
+        border: 1px solid theme-color('secondary');
+    }
+    &.is-unread .post-title {
+        font-weight: $font-weight-bold;
+    }
+}
+
 .reader-content {
     position: relative;
     flex: 1;
@@ -44,11 +78,22 @@ body {
 }
 
 .btn .octicon {
+    position: relative;
+    top: .125rem;
     width: 1rem;
     height: 1rem;
-    padding-top: .25rem;
+    overflow: visible;
+    margin-left: -.125rem;
+    margin-right: -.125rem;
     path {
-        fill: color-yiq(theme-color("secondary"));
+        fill: color-yiq(theme-color('secondary'));
+    }
+}
+.list-group-item .octicon {
+    width: 4rem;
+    height: 4rem;
+    path {
+        fill: theme-color('secondary');
     }
 }
 

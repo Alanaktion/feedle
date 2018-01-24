@@ -119,4 +119,41 @@ class HomeController extends Controller
         $feedPost->save();
         return $feedPost;
     }
+
+    /**
+     * Show a feed subscription detail and post list
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function feedSubscription(Request $request)
+    {
+        $subscription = FeedSubscription::findOrFail($request->input('id'));
+        if ($subscription->user_id != Auth::id()) {
+            throw new \Illuminate\Database\Eloquent\ModelNotFoundException;
+        }
+        $posts = FeedPost::with('feed')
+            ->where([
+                ['user_id', '=', Auth::id()],
+                ['feed_id', '=', $subscription->feed_id],
+            ])
+            ->get();
+        return view('ajax.feed-subscription', [
+            'subscription' => $subscription,
+            'posts' => $posts
+        ]);
+    }
+
+    /**
+     * Show the list of feed subscriptions
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function feedList()
+    {
+        $subscriptions = FeedSubscription::with('feed')
+            ->where('user_id', '=', Auth::id())
+            ->get();
+        return view('blocks.feed-list', ['subscriptions' => $subscriptions]);
+    }
 }
