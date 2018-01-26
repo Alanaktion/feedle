@@ -4,7 +4,7 @@
             data-id="{{ $post->id }}" data-toggle="reader" target="reader">
         {{ $post->feed->name }}<br>
         <span class="post-title">{{ $post->title }}</span><br>
-        <small class="text-muted">{{ $post->created_at->diffForHumans() }}</small>
+        <span class="post-date">{{ $post->created_at->diffForHumans() }}</span>
     </a>
 @empty
     <div class="list-group-item disabled text-center">

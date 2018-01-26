@@ -62,9 +62,32 @@ body {
         background-color: transparent;
         border: 1px solid theme-color('secondary');
     }
+    &.active.is-read::before {
+        border: 1px solid color-yiq(theme-color('primary'));
+        opacity: 0.7;
+    }
     &.is-unread .post-title {
         font-weight: $font-weight-bold;
     }
+    .post-date {
+        font-size: $font-size-sm;
+        color: theme-color('secondary');
+    }
+    &.active .post-date {
+        color: color-yiq(theme-color('primary'));
+    }
+    & > .octicon {
+        width: 4rem;
+        height: 4rem;
+        path {
+            fill: theme-color('secondary');
+        }
+    }
+}
+
+
+.post p {
+    margin-bottom: .5rem;
 }
 
 .reader-content {
@@ -92,16 +115,6 @@ body {
     path {
         fill: color-yiq(theme-color('secondary'));
     }
-}
-.list-group-item > .octicon {
-    width: 4rem;
-    height: 4rem;
-    path {
-        fill: theme-color('secondary');
-    }
-}
-.list-group-item.disabled p {
-    margin-bottom: .5rem;
 }
 
 .is-loading {

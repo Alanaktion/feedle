@@ -74,12 +74,15 @@ require(['jquery', 'bootstrap', 'axios'], function ($, Bootstrap, axios) {
 
         // Handle post selection
         $('#app').on('click', '[data-toggle="reader"]', function (e) {
+            var $this = $(this);
             axios.post(route('postUpdate'), {
-                id: $(this).attr('data-id'),
+                id: $this.attr('data-id'),
                 is_read: 1,
             }).catch((error) => {
                 console.error(error);
             });
+            $this.siblings().removeClass('active');
+            $this.removeClass('is-unread').addClass('is-read active');
             var $iframe = $('iframe[data-reader]');
             if ($iframe.hasClass('d-none')) {
                 $('[data-reader-placeholder]').addClass('d-none');

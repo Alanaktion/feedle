@@ -24,7 +24,7 @@
     <a class="list-group-item list-group-item-action post {{ $post->is_read ? 'is-read' : 'is-unread' }}"
         href="{{ $post->url }}" data-id="{{ $post->id }}" data-toggle="reader" target="reader">
         <span class="post-title">{{ $post->title }}</span><br>
-        <small class="text-muted">{{ $post->created_at->diffForHumans() }}</small>
+        <span class="post-date">{{ $post->created_at->diffForHumans() }}</span>
     </a>
 @empty
     <div class="list-group-item disabled text-center">
