@@ -117,5 +117,38 @@ require(['jquery', 'bootstrap', 'axios'], function ($, Bootstrap, axios) {
                 console.error(error);
             });
         });
+
+        // Handle mark read button on subscription
+        $('#app').on('click', '[data-action="mark-read"]', function (e) {
+            var $this = $(this),
+                $list = $($this.attr('data-target')),
+                feedId = $this.attr('data-id');
+            $this.addClass('disabled');
+            $list.find('.post').removeClass('is-unread').addClass('is-read');
+            axios.post(route('markFeedRead'), {
+                id: feedId
+            }).catch((error) => {
+                console.error(error);
+            });
+            e.preventDefault();
+        });
+
+        // Unsubscribe from a feed
+        $('#app').on('click', '[data-action="unsubscribe"]', function (e) {
+            $('#feeds').children().remove();
+            $('<div />').addClass('is-loading').appendTo('#feeds');
+            axios.post(route('unsubscribe'), {
+                id: $(this).attr('data-id')
+            }).then(() => {
+                axios.get(route('feedList')).then((response) => {
+                    $('#feeds').html(response.data);
+                }).catch((error) => {
+                    console.error(error);
+                });
+            }).catch((error) => {
+                console.error(error);
+            });
+            e.preventDefault();
+        });
     });
 });

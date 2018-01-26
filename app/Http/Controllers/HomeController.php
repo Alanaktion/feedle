@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Feed;
 use App\FeedPost;
 use App\FeedSubscription;
@@ -144,5 +145,37 @@ class HomeController extends Controller
             'subscription' => $subscription,
             'posts' => $posts
         ]);
+    }
+
+    /**
+     * Mark all of the user's posts read in a specific feed
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function markFeedRead(Request $request)
+    {
+        DB::table('feed_posts')->where([
+            ['user_id', '=', Auth::id()],
+            ['feed_id', '=', $request->input('id')],
+        ])->update(['is_read' => true]);
+        return [
+            'success' => true,
+        ];
+    }
+
+    /**
+     * Unsubscribe the user from a feed
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function unsubscribe(Request $request)
+    {
+        $sub = FeedSubscription::findOrFail($request->input('id'));
+        $sub->delete();
+        return [
+            'success' => true,
+        ];
     }
 }

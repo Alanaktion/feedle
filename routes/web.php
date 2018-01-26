@@ -23,3 +23,5 @@ Route::get('/feedSearch', 'HomeController@feedSearch')->name('feedSearch');
 Route::get('/feedSubscription', 'HomeController@feedSubscription')->name('feedSubscription');
 Route::post('/feedAdd', 'HomeController@feedAdd')->name('feedAdd');
 Route::post('/postUpdate', 'HomeController@feedPostUpdate')->name('postUpdate');
+Route::post('/markFeedRead', 'HomeController@markFeedRead')->name('markFeedRead');
+Route::post('/unsubscribe', 'HomeController@unsubscribe')->name('unsubscribe');

@@ -1,7 +1,7 @@
 <div class="list-group">
 @forelse ($subscriptions as $subscription)
     <a class="list-group-item list-group-item-action" href="#"
-        data-id="{{ $subscription->feed->id }}" data-toggle="post-list">
+        data-id="{{ $subscription->id }}" data-toggle="post-list">
         {{ $subscription->feed->name }}
     </a>
 @empty
