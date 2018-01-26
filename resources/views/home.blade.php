@@ -44,4 +44,5 @@
     </div>
 </div>
 @include('blocks.modal-add-feed')
+@include('blocks.toast-dom')
 @endsection

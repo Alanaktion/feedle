@@ -27,7 +27,7 @@
     </div>
 </div>
 
-<div class="list-group" id="sub-{{ $subscription->id }}-posts">
+<div class="list-group pb-3" id="sub-{{ $subscription->id }}-posts">
 @forelse ($posts as $post)
     <a class="list-group-item list-group-item-action post {{ $post->is_read ? 'is-read' : 'is-unread' }}"
         href="{{ $post->url }}" data-id="{{ $post->id }}" data-toggle="reader" target="reader">
