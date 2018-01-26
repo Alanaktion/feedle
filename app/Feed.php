@@ -109,7 +109,7 @@ class Feed extends Model
                 ];
             }
             if ($channel->link) {
-                $siteUrl = (string)$channel0->link;
+                $siteUrl = (string)$channel->link;
             }
             return [
                 'title' => (string)$channel->title,

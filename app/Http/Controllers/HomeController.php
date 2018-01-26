@@ -29,13 +29,15 @@ class HomeController extends Controller
     public function index()
     {
         $subscriptions = FeedSubscription::with('feed')
-            ->where('user_id', '=', Auth::id())
+            ->where('user_id', Auth::id())
+            ->latest()
             ->get();
         $posts = FeedPost::with('feed')
             ->where([
                 ['user_id', '=', Auth::id()],
-                ['is_read', '=', false],
+                ['is_read', '=', '0'],
             ])
+            ->latest()
             ->get();
         return view('home', [
             'subscriptions' => $subscriptions,

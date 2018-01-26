@@ -13,6 +13,7 @@
 
 Route::get('/', 'IndexController@index')->name('index');
 Route::get('/routes.js', 'StaticController@routesJs')->name('routes.js');
+Route::get('/favicon/{host}', 'ProxyController@favicon')->name('favicon');
 
 Auth::routes();
 

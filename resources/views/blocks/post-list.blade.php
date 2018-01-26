@@ -1,4 +1,4 @@
-<div class="list-group">
+<div class="list-group pb-3">
 @forelse ($posts as $post)
     <a class="list-group-item list-group-item-action post is-unread" href="{{ $post->url }}"
             data-id="{{ $post->id }}" data-toggle="reader" target="reader">
