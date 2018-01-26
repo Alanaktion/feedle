@@ -37,7 +37,6 @@
         </div>
     </div>
     <div class="reader-content">
-        {{-- Post content --}}
         <p class="text-muted text-center mt-5" data-reader-placeholder>
             Select a post on the left to start reading.
         </p>

@@ -89,12 +89,15 @@ body {
         fill: color-yiq(theme-color('secondary'));
     }
 }
-.list-group-item .octicon {
+.list-group-item > .octicon {
     width: 4rem;
     height: 4rem;
     path {
         fill: theme-color('secondary');
     }
+}
+.list-group-item.disabled p {
+    margin-bottom: .5rem;
 }
 
 .is-loading {

@@ -11,8 +11,7 @@
         <svg class="octicon octicon-check" viewBox="0 0 12 16" version="1.1" aria-hidden="true">
             <path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path>
         </svg>
-        <br>
-        No unread posts.
+        <p>No unread posts.</p>
     </div>
 @endforelse
 </div>
