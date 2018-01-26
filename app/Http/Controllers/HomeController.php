@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Feed;
 use App\FeedPost;
 use App\FeedSubscription;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class HomeController extends Controller
 {
@@ -42,6 +43,19 @@ class HomeController extends Controller
             'subscriptions' => $subscriptions,
             'posts' => $posts
         ]);
+    }
+
+    /**
+     * Get feed list view
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function feedList()
+    {
+        $subscriptions = FeedSubscription::with('feed')
+            ->where('user_id', '=', Auth::id())
+            ->get();
+        return view('blocks.feed-list', ['subscriptions' => $subscriptions]);
     }
 
     /**
@@ -92,20 +106,43 @@ class HomeController extends Controller
     }
 
     /**
-     * Update a feed post
-     *
-     * Typically used to mark a feed as read
+     * Update a feed post's is_read status
      *
      * @param Request $request
      * @return \Illuminate\Http\Response
      */
     public function feedPostUpdate(Request $request)
     {
-        $post = FeedPost::findOrFail($request->input('id'));
-        if ($post->user_id != Auth::id()) {
-            throw new ModelNotFoundException;
+        $feedPost = FeedPost::findOrFail($request->input('id'));
+        if ($feedPost->user_id != Auth::id()) {
+            throw new \Illuminate\Database\Eloquent\ModelNotFoundException;
         }
-        $post->fill($request->input());
-        return $post;
+        $feedPost->is_read = $request->input('is_read');
+        $feedPost->save();
+        return $feedPost;
+    }
+
+    /**
+     * Show a feed subscription detail and post list
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function feedSubscription(Request $request)
+    {
+        $subscription = FeedSubscription::findOrFail($request->input('id'));
+        if ($subscription->user_id != Auth::id()) {
+            throw new \Illuminate\Database\Eloquent\ModelNotFoundException;
+        }
+        $posts = FeedPost::with('feed')
+            ->where([
+                ['user_id', '=', Auth::id()],
+                ['feed_id', '=', $subscription->feed_id],
+            ])
+            ->get();
+        return view('ajax.feed-subscription', [
+            'subscription' => $subscription,
+            'posts' => $posts
+        ]);
     }
 }

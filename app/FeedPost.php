@@ -12,6 +12,7 @@ class FeedPost extends Model
         'title',
         'feed_id',
         'user_id',
+        'is_read',
         'guid',
         'url',
         'created_at'

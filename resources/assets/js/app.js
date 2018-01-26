@@ -56,6 +56,14 @@ require(['jquery', 'bootstrap', 'axios'], function ($, Bootstrap, axios) {
                 axios.post(action, {
                     url: url
                 }).then((response) => {
+                    $('#feeds').addClass('is-loading');
+                    axios.get(route('feedList')).then((response) => {
+                        $('#feeds')
+                            .removeClass('is-loading')
+                            .html(response.data);
+                    }).catch((error) => {
+                        location.reload();
+                    });
                     $modal.modal('hide');
                 }).catch((error) => {
                     console.error(error);
@@ -65,14 +73,46 @@ require(['jquery', 'bootstrap', 'axios'], function ($, Bootstrap, axios) {
             });
 
         // Handle post selection
-        $('.list-group').on('click', '[data-toggle="reader"]', function (e) {
-            // TODO: mark post as read
+        $('#app').on('click', '[data-toggle="reader"]', function (e) {
+            axios.post(route('postUpdate'), {
+                id: $(this).attr('data-id'),
+                is_read: 1,
+            }).catch((error) => {
+                console.error(error);
+            });
             var $iframe = $('iframe[data-reader]');
-            if ($iframe.hasClass('invisible')) {
-                $('[data-reader-placeholder]').addClass('invisible');
-                $iframe.removeClass('invisible');
+            if ($iframe.hasClass('d-none')) {
+                $('[data-reader-placeholder]').addClass('d-none');
+                $iframe.removeClass('d-none');
             }
+        });
+
+        // Handle subscription selection
+        // Shows the subscription details and post list
+        $('#app').on('click', '[data-toggle="post-list"]', function (e) {
+            $('#feeds').children().remove();
+            $('<div />').addClass('is-loading').appendTo('#feeds');
+            axios.get(route('feedSubscription'), {
+                params: {
+                    id: $(this).attr('data-id')
+                }
+            }).then((response) => {
+                $('#feeds').html(response.data);
+            }).catch((error) => {
+                console.error(error);
+            });
+            e.preventDefault();
+        });
+
+        // Handle back button on subscription details
+        $('#app').on('click', '[data-toggle="feed-list"]', function (e) {
+            $('#feeds').children().remove();
+            $('<div />').addClass('is-loading').appendTo('#feeds');
+            axios.get(route('feedList')).then((response) => {
+                $('#feeds').html(response.data);
+            }).catch((error) => {
+                console.error(error);
+            });
         });
     });
 });
-

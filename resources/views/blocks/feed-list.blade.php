@@ -1,11 +1,12 @@
 <div class="list-group">
 @forelse ($subscriptions as $subscription)
-    <div class="list-group-item">
+    <a class="list-group-item list-group-item-action" href="#"
+        data-id="{{ $subscription->feed->id }}" data-toggle="post-list">
         {{ $subscription->feed->name }}
-    </div>
+    </a>
 @empty
     <div class="list-group-item disabled text-center">
-        No feeds yet.
+        You are not subscribed to any feeds yet.
     </div>
 @endforelse
 </div>
