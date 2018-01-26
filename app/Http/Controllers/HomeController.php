@@ -28,9 +28,16 @@ class HomeController extends Controller
     public function index()
     {
         $subscriptions = FeedSubscription::with('feed')
-            ->where('user_id', Auth::id())->get();
+            ->where('user_id', Auth::id())
+            ->latest()
+            ->get();
         $posts = FeedPost::with('feed')
-            ->where('user_id', Auth::id())->get();
+            ->where([
+                ['user_id', '=', Auth::id()],
+                ['is_read', '=', '0'],
+            ])
+            ->latest()
+            ->get();
         return view('home', [
             'subscriptions' => $subscriptions,
             'posts' => $posts
@@ -82,5 +89,23 @@ class HomeController extends Controller
             ]);
         }
         return $feed;
+    }
+
+    /**
+     * Update a feed post
+     *
+     * Typically used to mark a feed as read
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function feedPostUpdate(Request $request)
+    {
+        $post = FeedPost::findOrFail($request->input('id'));
+        if ($post->user_id != Auth::id()) {
+            throw new ModelNotFoundException;
+        }
+        $post->fill($request->input());
+        return $post;
     }
 }

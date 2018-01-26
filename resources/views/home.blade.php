@@ -39,7 +39,7 @@
         <p class="text-muted text-center mt-5" data-reader-placeholder>
             Select a post on the left to start reading.
         </p>
-        <iframe src="about:blank" frameborder="0" class="reader-iframe hidden" name="reader" data-reader></iframe>
+        <iframe src="about:blank" frameborder="0" class="reader-iframe invisible" name="reader" data-reader></iframe>
     </div>
 </div>
 @include('blocks.modal-add-feed')

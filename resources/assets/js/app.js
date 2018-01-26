@@ -68,9 +68,9 @@ require(['jquery', 'bootstrap', 'axios'], function ($, Bootstrap, axios) {
         $('.list-group').on('click', '[data-toggle="reader"]', function (e) {
             // TODO: mark post as read
             var $iframe = $('iframe[data-reader]');
-            if ($iframe.hasClass('hidden')) {
-                $('[data-reader-placeholder]').addClass('hidden');
-                $iframe.removeClass('hidden');
+            if ($iframe.hasClass('invisible')) {
+                $('[data-reader-placeholder]').addClass('invisible');
+                $iframe.removeClass('invisible');
             }
         });
     });

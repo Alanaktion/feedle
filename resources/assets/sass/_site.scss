@@ -11,7 +11,7 @@
 // Body flexbox layout
 body {
     display: flex;
-    min-height: 100vh;
+    height: 100vh;
     flex-direction: column;
 }
 
@@ -28,6 +28,10 @@ body {
 .reader-list {
     width: 20rem;
     background-color: $reader-list-bg;
+    .tab-content {
+        overflow-y: auto;
+        height: calc(100vh - 8rem);
+    }
 }
 .reader-content {
     position: relative;
