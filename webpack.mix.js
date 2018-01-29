@@ -14,7 +14,7 @@ let mix = require('laravel-mix');
 mix.js('resources/assets/js/app.js', 'public/js')
     .extract([
         'axios',
-        'jquery/dist/jquery.slim',
+        'jquery',
         'popper.js/dist/umd/popper',
         'bootstrap',
     ])
