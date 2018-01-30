@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="19"
+   height="19"
+   class="octicon octicon-rss"
+   viewBox="0 0 0.7421875 1.1875"
+   version="1.1"
+   aria-hidden="true"
+   id="svg4487"
+   sodipodi:docname="icon.svg"
+   inkscape:version="0.92.1 r15371">
+  <metadata
+     id="metadata4493">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs4491" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1027"
+     id="namedview4489"
+     showgrid="true"
+     inkscape:zoom="22.578947"
+     inkscape:cx="9.5"
+     inkscape:cy="9.5"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg4487">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4495" />
+  </sodipodi:namedview>
+  <path
+     d="m 0.08984375,1.125 h -0.25 v -0.25 c 0.125,0 0.25,0.125 0.25,0.25 z m -0.25,-0.99999997 V 0.25 c 0.49705626,0 0.87499998,0.37794374 0.875,0.875 h 0.125 c 0,-0.55199997 -0.448,-0.99999997 -1,-0.99999997 z m 0,0.37499997 v 0.12500003 c 0.275,0 0.5,0.225 0.5,0.49999997 h 0.125 c 0,-0.33099997 -0.294,-0.625 -0.625,-0.625 z"
+     id="path4485"
+     inkscape:connector-curvature="0"
+     style="fill-rule:evenodd;stroke-width:0.1;fill:#fdac24;fill-opacity:1"
+     sodipodi:nodetypes="cccccccccccccc" />
+</svg>
