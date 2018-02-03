@@ -55,6 +55,7 @@ class HomeController extends Controller
     {
         $subscriptions = FeedSubscription::with('feed')
             ->where('user_id', '=', Auth::id())
+            ->latest()
             ->get();
         return view('blocks.feed-list', ['subscriptions' => $subscriptions]);
     }
