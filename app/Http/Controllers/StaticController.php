@@ -12,6 +12,8 @@ class StaticController extends Controller
     public function routesJs()
     {
         $routes = app('router')->getRoutes();
-        return view('js.routes', ['routes' => $routes]);
+        return response()
+            ->view('js.routes', ['routes' => $routes])
+            ->header('Content-Type', 'application/javascript');
     }
 }
