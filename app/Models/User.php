@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -32,7 +32,7 @@ class User extends Authenticatable
      */
     public function subscriptions()
     {
-        return $this->hasMany('App\FeedSubscription');
+        return $this->hasMany(FeedSubscription::class);
     }
 
     /**
@@ -40,6 +40,6 @@ class User extends Authenticatable
      */
     public function posts()
     {
-        return $this->hasMany('App\FeedPost');
+        return $this->hasMany(FeedPost::class);
     }
 }

@@ -11,27 +11,27 @@
     <title>{{ config('app.name', 'Feedle') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
+<body class="">
 <div id="app">
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
+    <nav class="navbar">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
                 {{ config('app.name', 'Feedle') }}
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">Log In</a></li>
-                    <li class="nav-item"><a href="{{ route('register') }}" class="nav-link">Register</a></li>
-                </ul>
+            <div class="block md:hidden">
+                <button class="navbar-toggle">
+                    <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+                </button>
             </div>
 
+            <div class="navbar-nav">
+                <div class="text-sm lg:flex-grow">
+                    <a href="{{ route('login') }}" class="navbar-link">Log In</a>
+                    <a href="{{ route('register') }}" class="navbar-link">Register</a>
+                </div>
+            </div>
         </div>
     </nav>
 
@@ -39,9 +39,8 @@
 </div>
 
 <!-- Scripts -->
-<script src="{{ route('routes.js') }}"></script>
-<script src="{{ asset('js/manifest.js') }}"></script>
-<script src="{{ asset('js/vendor.js') }}"></script>
-<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ mix('js/manifest.js') }}"></script>
+<script src="{{ mix('js/vendor.js') }}"></script>
+<script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>

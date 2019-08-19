@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use App\Feed;
-use App\FeedPost;
-use App\FeedSubscription;
+use App\Models\Feed;
+use App\Models\FeedPost;
+use App\Models\FeedSubscription;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class HomeController extends Controller

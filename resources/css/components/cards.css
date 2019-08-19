@@ -1,0 +1,9 @@
+.card {
+    @apply rounded overflow-hidden shadow-lg;
+}
+.card-body {
+    @apply px-4 py-3;
+}
+.card-header {
+    @apply px-4 pt-3 font-bold text-xl text-gray-800;
+}

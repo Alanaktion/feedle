@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
-use App\FeedPost;
+use App\Models\FeedPost;
 use GuzzleHttp\Client;
 use SimpleXMLElement as Xml;
 use pQuery;
@@ -219,7 +219,7 @@ class Feed extends Model
      */
     public function subscriptions()
     {
-        return $this->hasMany('App\FeedSubscription');
+        return $this->hasMany(FeedSubscription::class);
     }
 
     /**
@@ -227,7 +227,6 @@ class Feed extends Model
      */
     public function posts()
     {
-        return $this->hasMany('App\FeedPost');
+        return $this->hasMany(FeedPost::class);
     }
 }
-

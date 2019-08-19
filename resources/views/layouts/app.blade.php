@@ -11,7 +11,7 @@
     <title>{{ config('app.name', 'Feedle') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app-dark.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
 <div id="app">

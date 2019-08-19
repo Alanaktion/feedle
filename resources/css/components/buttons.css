@@ -1,0 +1,27 @@
+.btn {
+    @apply font-bold py-2 px-3 rounded;
+}
+
+.btn-primary {
+  @apply bg-primary-500 text-white;
+}
+.btn-primary:hover,
+.btn-primary:focus {
+  @apply bg-primary-700;
+}
+
+.btn-secondary {
+  @apply bg-gray-500 text-gray-800;
+}
+.btn-secondary:hover,
+.btn-secondary:focus {
+  @apply bg-gray-700;
+}
+
+.btn-link {
+    @apply text-primary-500;
+}
+.btn-link:hover,
+.btn-link:focus {
+    @apply text-primary-700 underline;
+}

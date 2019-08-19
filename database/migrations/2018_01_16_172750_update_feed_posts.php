@@ -17,7 +17,7 @@ class UpdateFeedPosts extends Migration
     {
         Schema::table('feed_posts', function (Blueprint $table) {
             $table->dropUnique('feed_posts_uuid_unique');
-            $table->unsignedInteger('user_id')->after('feed_id');
+            $table->unsignedBigInteger('user_id')->after('feed_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->boolean('is_read')->after('user_id')->default(false);
             $table->unique(['uuid', 'user_id'], 'feed_posts_uuid_user_unique');

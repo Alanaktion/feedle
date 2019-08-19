@@ -1,4 +1,4 @@
-let mix = require('laravel-mix');
+const mix = require('laravel-mix');
 
 /*
  |--------------------------------------------------------------------------
@@ -11,12 +11,15 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
-    .extract([
-        'axios',
-        'jquery',
-        'popper.js/dist/umd/popper',
-        'bootstrap',
-    ])
-    .sass('resources/assets/sass/app.scss', 'public/css')
-    .sass('resources/assets/sass/app-dark.scss', 'public/css');
+mix.js('resources/js/app.js', 'public/js')
+    .extract(['vue', 'lodash', 'axios'])
+    .postCss('resources/css/app.css', 'public/css', [
+        require('postcss-easy-import'),
+        require('tailwindcss')('./resources/tailwind.config.js'),
+        require('autoprefixer'),
+    ]);
+
+if (mix.inProduction()) {
+    mix.version();
+    mix.disableNotifications();
+}
