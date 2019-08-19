@@ -10,8 +10,6 @@ module.exports = {
             red: colors.red,
             yellow: colors.yellow,
             teal: colors.teal,
-            blue: colors.blue,
-            purple: colors.purple,
 
             primary: colors.indigo,
         },
@@ -96,6 +94,7 @@ module.exports = {
     },
     plugins: [],
     corePlugins: {
+        backgroundAttachment: false,
         float: false,
         placeholderColor: false,
     }

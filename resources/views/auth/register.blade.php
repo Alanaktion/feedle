@@ -18,6 +18,7 @@
                                 class="input{{ $errors->has('name') ? ' is-invalid' : '' }}"
                                 name="name"
                                 value="{{ old('name') }}"
+                                autofocus
                                 required>
                             @if ($errors->has('name'))
                                 <div class="invalid-feedback">

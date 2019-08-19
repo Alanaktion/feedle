@@ -1,28 +1,26 @@
 .navbar {
     @apply flex items-center justify-between bg-primary-500 p-4;
 }
+.navbar > .container {
+    @apply flex justify-between;
+}
 .navbar-brand {
     @apply flex items-center flex-shrink-0 text-white mr-4;
     @apply font-semibold text-xl tracking-tight;
 }
-.navbar-toggle {
-    @apply flex items-center px-3 py-2 border rounded text-primary-200 border-primary-400;
-}
-.navbar-toggle:hover {
-    @apply text-white border-white;
-}
 .navbar-nav {
-    @apply w-full block flex-grow;
+    @apply w-full block flex-grow text-sm;
 }
 @media (min-width: 768px) {
     .navbar-nav {
-        @apply flex items-center w-auto;
+        @apply flex items-center w-auto flex-grow-0 ml-auto;
     }
 }
 .navbar-link {
     @apply block mt-4 text-primary-200 mr-4;
 }
-.navbar-link:hover {
+a.navbar-link:hover,
+button.navbar-link:hover {
     @apply text-white;
 }
 @media (min-width: 768px) {

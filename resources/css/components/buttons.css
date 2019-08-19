@@ -1,21 +1,27 @@
 .btn {
-    @apply font-bold py-2 px-3 rounded;
+    @apply inline-block font-bold py-2 px-3 rounded;
+}
+.btn-lg {
+    @apply py-3 px-4;
+}
+.btn[disabled] {
+    @apply opacity-50 cursor-not-allowed pointer-events-none;
 }
 
 .btn-primary {
-  @apply bg-primary-500 text-white;
+    @apply bg-primary-500 text-white;
 }
 .btn-primary:hover,
 .btn-primary:focus {
-  @apply bg-primary-700;
+    @apply bg-primary-700;
 }
 
 .btn-secondary {
-  @apply bg-gray-500 text-gray-800;
+    @apply bg-gray-300 text-gray-800;
 }
 .btn-secondary:hover,
 .btn-secondary:focus {
-  @apply bg-gray-700;
+    @apply bg-gray-400;
 }
 
 .btn-link {
@@ -24,4 +30,17 @@
 .btn-link:hover,
 .btn-link:focus {
     @apply text-primary-700 underline;
+}
+
+.btn-group {
+    @apply inline-flex;
+}
+.btn-group .btn {
+    @apply rounded-none;
+}
+.btn-group .btn:first-child {
+    @apply rounded-l;
+}
+.btn-group .btn:last-child {
+    @apply rounded-r;
 }

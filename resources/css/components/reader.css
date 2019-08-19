@@ -1,0 +1,122 @@
+html, body {
+    @apply h-full;
+}
+body {
+    @apply flex flex-col;
+}
+#app {
+    @apply flex flex-col flex-grow;
+}
+
+.reader {
+    @apply flex flex-grow;
+}
+.reader-list {
+    @apply w-8 bg-primary-100;
+}
+.reader-content {
+    @apply relative flex-grow;
+}
+.reader-iframe {
+    @apply absolute inset-0 border-0;
+}
+
+.tab-content {
+    @apply overflow-y-auto;
+}
+.sub-topbar {
+    @apply flex w-full pb-3;
+}
+.sub-topbar-title {
+    text-overflow: ellipsis;
+    @apply mx-3 leading-tight overflow-hidden whitespace-no-wrap;
+}
+
+.post {
+    @apply relative;
+}
+.post::before {
+    content: ' ';
+    top: .5rem;
+    right: .5rem;
+    @apply absolute w-2 h-2 rounded bg-primary-500;
+}
+.post.is-read::before {
+    @apply bg-transparent border border-gray-400;
+}
+.post.active.is-read::before {
+    @apply border-white opacity-75;
+}
+.post.is-unread .post-title {
+    @apply font-bold;
+}
+.post-date {
+    @apply text-sm text-gray-700;
+}
+.post.active .post-date {
+    @apply text-white;
+}
+.post > .octicon {
+    @apply w-5 h-5 text-gray-700 fill-current;
+}
+.post p {
+    @apply mb-2;
+}
+
+/* TODO: determine what portions of the below content to keep */
+.toast {
+    bottom: 1rem;
+    left: 1rem;
+    transform: translateY(-.5rem);
+    transition: opacity 0.s ease-out,
+                transform 0.2s ease-out,
+                visibility 0s linear 0.2s;
+    @apply fixed w-7 p-3 bg-gray-200 shadow-md rounded invisible opacity-0;
+}
+.toast-active {
+    transform: translateY(0);
+    transition: opacity 0.2s ease-out,
+                transform 0.2s ease-out;
+    @apply visible opacity-100;
+}
+
+.btn .octicon {
+    @apply relative w-3 h-3 overflow-visible -ml-1 -mr-1;
+}
+.octicon path {
+    @apply fill-current;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(359deg);
+    }
+}
+.is-loading {
+    position: relative;
+    min-height: 2rem;
+}
+.btn.is-loading {
+    color: transparent !important;
+    pointer-events: none;
+}
+.is-loading[data-content="result"] {
+    @apply mt-3;
+}
+.ist-loading::after {
+    content: '';
+    position: absolute;
+    display: block;
+    left: calc(50% - (1em / 2));
+    top: calc(50% - (1em / 2));
+    height: 1em;
+    width: 1em;
+    animation: spin 0.75s infinite linear;
+    border: 2px solid $body-color;
+    border-radius: 2em;
+    border-right-color: transparent;
+    border-top-color: transparent;
+}
