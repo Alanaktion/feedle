@@ -14,12 +14,15 @@ cache:
     - node_modules
     - vendor
 
-before_script:
-  - cp .env.travis .env
+install:
+  - cp .env.testing .env
+  - travis_retry composer install --no-interaction --prefer-dist --no-suggest
+  - php artisan key:generate
   - mysql -e 'CREATE DATABASE feedle;'
-  - composer self-update
-  - composer install --no-interaction --prefer-dist
   - php artisan migrate --no-interaction -vvv
+
+before_script:
+  - php artisan serve &
 
 script:
   - vendor/bin/phpunit
