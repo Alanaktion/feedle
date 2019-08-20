@@ -1,19 +1,25 @@
 dist: bionic
 language: php
+
 php:
   - 7.2
   - 7.3
-addons:
-  mariadb: 10.4
+
+services:
+  - mysql
+
 cache:
   directories:
+    - $HOME/.composer/cache
     - node_modules
     - vendor
+
 before_script:
   - cp .env.travis .env
-  - sudo mysql -e 'CREATE DATABASE feedle;'
+  - mysql -e 'CREATE DATABASE feedle;'
   - composer self-update
-  - composer install --no-interaction --no-dev
+  - composer install --no-interaction --prefer-dist --no-dev
   - php artisan migrate --no-interaction -vvv
+
 script:
   - vendor/bin/phpunit
