@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('feedSearch') }}" method="post" data-submit="find-feed">
+                <form action="/api/feeds/search" method="post" data-submit="find-feed">
                     <label for="feedUrl" class="sr-only">Feed URL</label>
                     <div class="d-flex">
                         <input type="text" name="url" class="input" id="feedUrl"

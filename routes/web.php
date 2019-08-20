@@ -12,16 +12,10 @@
 */
 
 Route::get('/', 'IndexController@index')->name('index');
-Route::get('/routes.js', 'StaticController@routesJs')->name('routes.js');
-Route::get('/favicon/{host}', 'ProxyController@favicon')->name('favicon');
+Route::get('favicon/{host}', 'ProxyController@favicon')->name('favicon');
 
 Auth::routes();
 
-Route::get('/feeds', 'HomeController@index')->name('feeds');
-Route::get('/feedList', 'HomeController@feedList')->name('feedList');
-Route::get('/feedSearch', 'HomeController@feedSearch')->name('feedSearch');
-Route::get('/feedSubscription', 'HomeController@feedSubscription')->name('feedSubscription');
-Route::post('/feedAdd', 'HomeController@feedAdd')->name('feedAdd');
-Route::post('/postUpdate', 'HomeController@feedPostUpdate')->name('postUpdate');
-Route::post('/markFeedRead', 'HomeController@markFeedRead')->name('markFeedRead');
-Route::post('/unsubscribe', 'HomeController@unsubscribe')->name('unsubscribe');
+Route::middleware('auth')->group(function () {
+    Route::get('feeds', 'HomeController@index')->name('feeds');
+});

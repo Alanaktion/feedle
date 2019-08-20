@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,6 +11,17 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+// TODO: find a clean way to support cookies and tokens for API auth
+Route::middleware('auth')->group(function () {
+    Route::get('feeds', 'Api\FeedController@index');
+    Route::get('feeds/search', 'Api\FeedController@search');
+    Route::post('feeds/{feed}/read', 'Api\FeedController@readAll');
+
+    Route::get('posts', 'Api\PostController@index');
+    Route::post('posts/{post}', 'Api\PostController@update');
+
+    Route::get('subscriptions', 'Api\SubscriptionController@index');
+    Route::post('subscriptions', 'Api\SubscriptionController@create');
+    Route::get('subscriptions/{subscription}', 'Api\SubscriptionController@show');
+    Route::delete('subscriptions/{subscription}', 'Api\SubscriptionController@unsubscribe');
 });

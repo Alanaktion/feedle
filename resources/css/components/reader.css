@@ -12,13 +12,13 @@ body {
     @apply flex flex-grow;
 }
 .reader-list {
-    @apply w-8 bg-primary-100;
+    @apply w-8 bg-gray-100;
 }
 .reader-content {
     @apply relative flex-grow;
 }
 .reader-iframe {
-    @apply absolute inset-0 border-0;
+    @apply absolute inset-0 border-0 w-full h-full;
 }
 
 .tab-content {
@@ -33,7 +33,10 @@ body {
 }
 
 .post {
-    @apply relative;
+    @apply relative block px-3 py-2;
+}
+.post.active {
+    @apply bg-primary-500 text-white;
 }
 .post::before {
     content: ' ';
@@ -50,17 +53,21 @@ body {
 .post.is-unread .post-title {
     @apply font-bold;
 }
-.post-date {
-    @apply text-sm text-gray-700;
+.post-meta {
+    @apply text-xs text-gray-700;
 }
-.post.active .post-date {
+.post.active .post-meta {
     @apply text-white;
 }
 .post > .octicon {
     @apply w-5 h-5 text-gray-700 fill-current;
 }
-.post p {
-    @apply mb-2;
+
+.feed {
+    @apply relative block px-3 py-2;
+}
+.feed-meta {
+    @apply text-xs text-gray-700;
 }
 
 /* TODO: determine what portions of the below content to keep */

@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
-use App\Feed;
+use App\Models\Feed;
 
 class UpdateFeeds extends Command
 {
@@ -39,6 +39,7 @@ class UpdateFeeds extends Command
      */
     public function handle()
     {
+        /** @var Feed */
         $feeds = Feed::has('subscriptions')->get();
         foreach ($feeds as $feed) {
             Log::debug('Updating feed', ['id' => $feed->id]);

@@ -8,23 +8,52 @@
         </div>
 
         <a :href="post.url" class="post" target="reader"
-            v-for="post in posts" :key="post.id">
-            {{ post.feed.name }}<br>
-            <span class="post-title">{{ post.title }}</span><br>
-            <span class="post-date">{{ post.created_at }}</span>
+            :class="{
+                'is-read': post.is_read,
+                'active': activePost && activePost.id == post.id
+            }"
+            v-for="post in posts" :key="post.id"
+            @click="selectPost(post)">
+            <div class="post-title">
+                {{ post.title }}
+            </div>
+            <div class="post-meta">
+                {{ post.feed.name }} &middot;
+                <span :title="post.created_at">
+                    {{ dateDisplay(post.created_at) }}
+                </span>
+            </div>
         </a>
     </div>
 </template>
 
 <script>
+import { parse, distanceInWordsToNow } from 'date-fns';
+
 export default {
     data() {
         return {
             posts: [],
+            activePost: null,
         }
     },
+    methods: {
+        async loadPosts() {
+            const response = await axios.get('/api/posts')
+            this.posts = response.data.data
+        },
+        async selectPost(post) {
+            this.$emit('select', post)
+            this.activePost = post
+            await axios.post(`/api/posts/${post.id}`, { is_read: true })
+            post.is_read = true
+        },
+        dateDisplay(date) {
+            return distanceInWordsToNow(parse(date)) + ' ago'
+        },
+    },
     mounted() {
-        // TODO: load posts
+        this.loadPosts()
     }
 }
 </script>

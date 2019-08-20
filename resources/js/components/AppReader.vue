@@ -18,22 +18,25 @@
                         Feeds
                     </button>
                 </div>
-                <button type="button" class="btn btn-secondary" title="Add Feed">
+                <button type="button" class="btn btn-secondary" title="Add Feed"
+                    @click="addFeed">
                     <svg class="octicon octicon-plus" viewBox="0 0 12 16" version="1.1" aria-hidden="true">
                         <path fill-rule="evenodd" d="M12 9H7v5H5V9H0V7h5V2h2v5h5z"></path>
                     </svg>
                 </button>
             </div>
             <div class="tab-content">
-                <tab-posts v-if="tab == 'posts'" />
-                <tab-feeds v-if="tab == 'feeds'" />
+                <tab-posts v-show="tab == 'posts'" @select="selectPost" />
+                <tab-feeds v-show="tab == 'feeds'" />
             </div>
         </div>
         <div class="reader-content">
-            <p class="text-gray-600 text-center mt-5" v-if="!article">
+            <p class="text-gray-600 text-center mt-5" v-if="!post">
                 Select a post on the left to start reading.
             </p>
-            <iframe src="about:blank" frameborder="0" class="reader-iframe d-none" name="reader" ref="reader"></iframe>
+            <iframe src="about:blank" class="reader-iframe"
+                :class="{'hidden': !post}"
+                name="reader" ref="reader"></iframe>
         </div>
     </div>
 </template>
@@ -43,11 +46,16 @@ export default {
     data() {
         return {
             tab: 'posts',
-            article: null,
+            post: null,
         }
     },
     methods: {
-        //
+        addFeed() {
+            // TODO: show "Add Feed" modal
+        },
+        selectPost(post) {
+            this.post = post
+        },
     },
     mounted() {
         //
