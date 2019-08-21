@@ -106,14 +106,10 @@ body {
     position: relative;
     min-height: 2rem;
 }
-.btn.is-loading {
-    color: transparent !important;
-    pointer-events: none;
-}
 .is-loading[data-content="result"] {
     @apply mt-3;
 }
-.ist-loading::after {
+.is-loading::after {
     content: '';
     position: absolute;
     display: block;
@@ -122,7 +118,7 @@ body {
     height: 1em;
     width: 1em;
     animation: spin 0.75s infinite linear;
-    border: 2px solid $body-color;
+    border: 2px solid var(--text-color);
     border-radius: 2em;
     border-right-color: transparent;
     border-top-color: transparent;

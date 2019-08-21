@@ -11,7 +11,7 @@
 .navbar-nav {
     @apply w-full block flex-grow text-sm;
 }
-@media (min-width: 768px) {
+@screen md {
     .navbar-nav {
         @apply flex items-center w-auto flex-grow-0 ml-auto;
     }
@@ -23,7 +23,7 @@ a.navbar-link:hover,
 button.navbar-link:hover {
     @apply text-white;
 }
-@media (min-width: 768px) {
+@screen md {
     .navbar-link {
         @apply inline-block mt-0;
     }
