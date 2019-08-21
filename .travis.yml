@@ -17,7 +17,6 @@ cache:
 install:
   - cp .env.testing .env
   - travis_retry composer install --no-interaction --prefer-dist --no-suggest
-  - php artisan key:generate
   - mysql -e 'CREATE DATABASE feedle;'
   - php artisan migrate --no-interaction -vvv
 
