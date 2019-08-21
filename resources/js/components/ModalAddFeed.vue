@@ -10,6 +10,7 @@
             </div>
             <form class="flex" @submit.prevent="search">
                 <input type="search" class="input" placeholder="Feed URL"
+                    autocorrect="off" autocapitalize="off" spellcheck="off"
                     ref="input" v-model="url">
                 <button type="submit" class="btn btn-primary hidden sm:block sm:ml-2"
                     :class="{ 'is-loading': searching }"
