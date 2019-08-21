@@ -75,7 +75,7 @@ body {
     bottom: 1rem;
     left: 1rem;
     transform: translateY(-.5rem);
-    transition: opacity 0.s ease-out,
+    transition: opacity 0.2s ease-out,
                 transform 0.2s ease-out,
                 visibility 0s linear 0.2s;
     @apply fixed w-7 p-3 bg-gray-200 shadow-md rounded invisible opacity-0;

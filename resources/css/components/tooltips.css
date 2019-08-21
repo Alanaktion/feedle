@@ -1,0 +1,35 @@
+[data-tooltip] {
+    @apply relative;
+}
+
+[data-tooltip]::before,
+[data-tooltip]::after {
+    bottom: 100%;
+    left: 50%;
+    transition: opacity 0.2s ease-out,
+                visibility 0s linear 0.2s;
+    @apply absolute invisible opacity-0 pointer-events-none;
+}
+
+[data-tooltip]:hover::before,
+[data-tooltip]:hover::after {
+    transition: opacity 0.2s ease-out 0.4s;
+    @apply visible opacity-100;
+}
+
+[data-tooltip]::before {
+    content: attr(data-tooltip);
+    background-color: hsla(0, 0%, 20%, 0.9);
+    color: #fff;
+    transform: translateX(-50%);
+    @apply rounded text-center text-xs leading-tight p-2 mb-1 whitespace-no-wrap;
+}
+
+/* Triangle */
+[data-tooltip]::after {
+    content: " ";
+    border-top: .25rem solid hsla(0, 0%, 20%, 0.9);
+    border-right: .25rem solid transparent;
+    border-left: .25rem solid transparent;
+    @apply -ml-1 w-0;
+}
