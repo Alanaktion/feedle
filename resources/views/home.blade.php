@@ -8,7 +8,3 @@
 <app-reader></app-reader>
 @include('blocks.toast-dom')
 @endsection
-
-@section('content-old')
-@include('blocks.modal-add-feed')
-@endsection
