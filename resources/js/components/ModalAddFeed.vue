@@ -1,5 +1,5 @@
 <template>
-    <div class="modal" @keyup.esc="close">
+    <div class="modal">
         <div class="modal-content">
             <div class="flex justify-between mb-3">
                 <div class="text-lg">Add Feed</div>
@@ -69,14 +69,23 @@ export default {
             this.close()
         },
         close() {
-            this.$destroy();
-            this.$el.parentNode.removeChild(this.$el);
+            this.$destroy()
+            this.$el.parentNode.removeChild(this.$el)
         },
+        keyup(e) {
+            if (e.keyCode == 27) { // esc
+                this.close()
+            }
+        }
     },
     mounted() {
         this.$nextTick(() => {
             this.$refs.input.focus()
         })
-    }
+        window.addEventListener('keyup', this.keyup, true)
+    },
+    destroyed() {
+        window.removeEventListener('keyup', this.keyup, true)
+    },
 }
 </script>
