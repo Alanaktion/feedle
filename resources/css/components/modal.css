@@ -1,0 +1,10 @@
+.modal {
+    @apply fixed inset-0 w-full flex justify-center items-start pt-5 z-20;
+}
+.modal-content {
+    @apply bg-white shadow-md w-9 p-3 rounded;
+}
+/* TODO: fix clickability of backdrop */
+.modal-backdrop {
+    @apply fixed inset-0 w-full h-full opacity-50 bg-black z-10;
+}

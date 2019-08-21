@@ -26,8 +26,8 @@
                 </button>
             </div>
             <div class="tab-content">
-                <tab-posts v-show="tab == 'posts'" @select="selectPost" />
-                <tab-feeds v-show="tab == 'feeds'" />
+                <tab-posts v-show="tab == 'posts'" ref="posts" @select="selectPost" />
+                <tab-feeds v-show="tab == 'feeds'" ref="feeds" />
             </div>
         </div>
         <div class="reader-content">
@@ -51,7 +51,14 @@ export default {
     },
     methods: {
         addFeed() {
-            // TODO: show "Add Feed" modal
+            const ModalAddFeed = Vue.component('ModalAddFeed')
+            const instance = new ModalAddFeed()
+            instance.$mount()
+            instance.$on('add-feed', feed => {
+                this.$refs.posts.loadPosts()
+                this.$refs.feeds.loadSubscriptions()
+            })
+            document.body.appendChild(instance.$el)
         },
         selectPost(post) {
             this.post = post
