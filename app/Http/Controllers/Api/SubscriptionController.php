@@ -54,11 +54,11 @@ class SubscriptionController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function show(FeedSubscription $subscription, Request $request)
+    public function show(FeedSubscription $subscription)
     {
         // TODO: use policies to enfore this
         if ($subscription->user_id != Auth::id()) {
-            throw new \Illuminate\Database\Eloquent\ModelNotFoundException;
+            throw new \Illuminate\Database\Eloquent\ModelNotFoundException();
         }
         $posts = FeedPost::with('feed')
             ->where([
@@ -79,11 +79,11 @@ class SubscriptionController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function unsubscribe(FeedSubscription $subscription, Request $request)
+    public function unsubscribe(FeedSubscription $subscription)
     {
         // TODO: use policies to enfore this
         if ($subscription->user_id != Auth::id()) {
-            throw new \Illuminate\Database\Eloquent\ModelNotFoundException;
+            throw new \Illuminate\Database\Eloquent\ModelNotFoundException();
         }
         $subscription->delete();
         return [

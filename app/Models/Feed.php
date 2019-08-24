@@ -94,10 +94,7 @@ class Feed extends Model
         }
 
         // RSS 2.0
-        if (
-            $xml->getName() == 'rss' &&
-            $xml->attributes()['version'] == '2.0'
-        ) {
+        if ($xml->getName() == 'rss' && $xml->attributes()['version'] == '2.0') {
             $channel = $xml->channel[0];
             $posts = [];
             foreach ($channel->item as $item) {
@@ -133,7 +130,6 @@ class Feed extends Model
         $client = new Client();
         $response = $client->request('GET', $url);
         $dom = pQuery::parseStr((string)$response->getBody());
-        $hrefs = [];
         $feeds = [];
         foreach ($dom->query('link[rel="alternate"]') as $el) {
             if (preg_match('@application/(atom|rss)\\+xml@', $el->type)) {

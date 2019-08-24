@@ -34,7 +34,7 @@ class PostController extends Controller
     {
         // TODO: use policy to enforce this
         if ($post->user_id != Auth::id()) {
-            throw new \Illuminate\Database\Eloquent\ModelNotFoundException;
+            throw new \Illuminate\Database\Eloquent\ModelNotFoundException();
         }
         // TODO: validate request body
         $post->is_read = (bool)$request->input('is_read');

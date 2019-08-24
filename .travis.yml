@@ -24,4 +24,9 @@ before_script:
   - php artisan serve &
 
 script:
+  - vendor/bin/phpcs --standard=Generic --sniffs=Generic.Commenting.Todo,Generic.CodeAnalysis.UnusedFunctionParameter,Generic.CodeAnalysis.EmptyStatement,Generic.PHP.DeprecatedFunctions app/
+  - vendor/bin/phpcs --standard=PSR12 app/
   - vendor/bin/phpunit
+
+after_failure:
+  - cat storage/logs/*.log

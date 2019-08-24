@@ -1,6 +1,8 @@
+[![Build Status](https://travis-ci.org/Alanaktion/feedle.svg?branch=master)](https://travis-ci.org/Alanaktion/feedle)
+
 Feedle
 ======
-*A self-hosted alternative to Feeder*
+*A self-hosted RSS/Atom feed reader*
 
 # Requirements
 
