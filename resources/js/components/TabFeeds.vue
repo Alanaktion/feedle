@@ -23,19 +23,19 @@ export default {
     data() {
         return {
             subscriptions: [],
-        }
+        };
     },
     methods: {
         async loadSubscriptions() {
-            const response = await axios.get('/api/subscriptions')
-            this.subscriptions = response.data.data
+            const response = await axios.get('/api/subscriptions');
+            this.subscriptions = response.data.data;
         },
         dateDisplay(date) {
-            return distanceInWordsToNow(parse(date)) + ' ago'
+            return distanceInWordsToNow(parse(date)) + ' ago';
         },
     },
     mounted() {
-        this.loadSubscriptions()
+        this.loadSubscriptions();
     }
 }
 </script>

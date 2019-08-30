@@ -11,7 +11,7 @@
             <form class="flex" @submit.prevent="search">
                 <input type="search" class="input" placeholder="Feed URL"
                     autocorrect="off" autocapitalize="off" spellcheck="off"
-                    ref="input" v-model="url">
+                    ref="input" v-model="url" required>
                 <button type="submit" class="btn btn-primary hidden sm:block sm:ml-2"
                     :class="{ 'is-loading': searching }"
                     aria-label="Search" required>
@@ -49,44 +49,44 @@ export default {
             url: '',
             searching: false,
             results: null,
-        }
+        };
     },
     methods: {
         async search() {
             if (this.url) {
-                this.searching = true
-                const param = encodeURIComponent(this.url)
-                const response = await axios.get('/api/feeds/search?url=' + param)
-                this.results = response.data
-                this.searching = false
+                this.searching = true;
+                const param = encodeURIComponent(this.url);
+                const response = await axios.get('/api/feeds/search?url=' + param);
+                this.results = response.data;
+                this.searching = false;
             }
         },
         async add(feed) {
-            feed.adding = true
+            this.$set(feed, 'adding', true);
             await axios.post('/api/subscriptions', {
                 url: feed.url,
-            })
-            this.$emit('add-feed', feed)
-            this.close()
+            });
+            this.$emit('add-feed', feed);
+            this.close();
         },
         close() {
-            this.$destroy()
-            this.$el.parentNode.removeChild(this.$el)
+            this.$destroy();
+            this.$el.parentNode.removeChild(this.$el);
         },
         keyup(e) {
             if (e.keyCode == 27) { // esc
-                this.close()
+                this.close();
             }
         }
     },
     mounted() {
         this.$nextTick(() => {
-            this.$refs.input.focus()
-        })
-        window.addEventListener('keyup', this.keyup, true)
+            this.$refs.input.focus();
+        });
+        window.addEventListener('keyup', this.keyup, true);
     },
     destroyed() {
-        window.removeEventListener('keyup', this.keyup, true)
+        window.removeEventListener('keyup', this.keyup, true);
     },
 }
 </script>

@@ -11,8 +11,7 @@
 |
 */
 
-// TODO: find a clean way to support cookies and tokens for API auth
-Route::middleware('auth')->group(function () {
+Route::middleware('auth:api')->group(function () {
     Route::get('feeds', 'Api\FeedController@index');
     Route::get('feeds/search', 'Api\FeedController@search');
     Route::post('feeds/{feed}/read', 'Api\FeedController@readAll');

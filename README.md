@@ -16,6 +16,7 @@ Start by copying `.env.example` to `.env` and adding your site/database info. Th
 composer install
 php artisan key:generate
 php artisan migrate
+php artisan passport:install
 npm ci
 npm run prod
 ```

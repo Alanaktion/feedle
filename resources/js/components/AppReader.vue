@@ -47,21 +47,21 @@ export default {
         return {
             tab: 'posts',
             post: null,
-        }
+        };
     },
     methods: {
         addFeed() {
-            const ModalAddFeed = Vue.component('ModalAddFeed')
-            const instance = new ModalAddFeed()
-            instance.$mount()
+            const ModalAddFeed = Vue.component('ModalAddFeed');
+            const instance = new ModalAddFeed();
+            instance.$mount();
             instance.$on('add-feed', feed => {
-                this.$refs.posts.loadPosts()
-                this.$refs.feeds.loadSubscriptions()
-            })
-            document.body.appendChild(instance.$el)
+                this.$refs.posts.loadPosts();
+                this.$refs.feeds.loadSubscriptions();
+            });
+            document.body.appendChild(instance.$el);
         },
         selectPost(post) {
-            this.post = post
+            this.post = post;
         },
     },
     mounted() {

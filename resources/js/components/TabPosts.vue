@@ -35,25 +35,25 @@ export default {
         return {
             posts: [],
             activePost: null,
-        }
+        };
     },
     methods: {
         async loadPosts() {
-            const response = await axios.get('/api/posts')
-            this.posts = response.data.data
+            const response = await axios.get('/api/posts');
+            this.posts = response.data.data;
         },
         async selectPost(post) {
-            this.$emit('select', post)
-            this.activePost = post
-            await axios.post(`/api/posts/${post.id}`, { is_read: true })
-            post.is_read = true
+            this.$emit('select', post);
+            this.activePost = post;
+            await axios.post(`/api/posts/${post.id}`, { is_read: true });
+            post.is_read = true;
         },
         dateDisplay(date) {
-            return distanceInWordsToNow(parse(date)) + ' ago'
+            return distanceInWordsToNow(parse(date)) + ' ago';
         },
     },
     mounted() {
-        this.loadPosts()
+        this.loadPosts();
     }
 }
 </script>
