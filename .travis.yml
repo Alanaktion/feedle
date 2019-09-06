@@ -19,8 +19,10 @@ install:
   - travis_retry composer install --no-interaction --prefer-dist --no-suggest
   - mysql -e 'CREATE DATABASE feedle;'
   - php artisan migrate --no-interaction -vvv
+  - npm ci
 
 before_script:
+  - npm run dev
   - php artisan serve &
 
 script:
