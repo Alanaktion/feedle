@@ -31,4 +31,4 @@ script:
   - vendor/bin/phpunit
 
 after_failure:
-  - cat storage/logs/*.log
+  - test -n "$(find storage/logs/ -name '*.log' -print -quit)" && cat storage/logs/*.log
