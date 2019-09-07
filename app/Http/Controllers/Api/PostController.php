@@ -3,16 +3,17 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\FeedPost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\FeedPost;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
     /**
      * Get a user's posts
      *
-     * @return array
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function index()
     {
@@ -32,12 +33,10 @@ class PostController extends Controller
      */
     public function update(FeedPost $post, Request $request)
     {
-        // TODO: use policy to enforce this
-        if ($post->user_id != Auth::id()) {
-            throw new \Illuminate\Database\Eloquent\ModelNotFoundException();
-        }
-        // TODO: validate request body
-        $post->is_read = (bool)$request->input('is_read');
+        Validator::make($request->all(), [
+            'is_read' => 'sometimes|boolean',
+        ])->validate();
+        $post->fill($request->only(['is_read']));
         $post->save();
         return $post;
     }

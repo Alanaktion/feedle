@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Feed;
 use App\Models\FeedPost;
 use App\Models\FeedSubscription;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class SubscriptionController extends Controller
 {
@@ -31,19 +32,14 @@ class SubscriptionController extends Controller
      */
     public function create(Request $request)
     {
-        // TODO: validate request
-        $url = $request->input('url');
-        $feed = Feed::createFromUrl($url);
-        $subscription = FeedSubscription::where([
+        Validator::make($request->all(), [
+            'url' => 'required|url',
+        ])->validate();
+        $feed = Feed::createFromUrl($request->input('url'));
+        FeedSubscription::firstOrCreate([
             'feed_id' => $feed->id,
             'user_id' => Auth::id(),
-        ])->first();
-        if (!$subscription) {
-            $subscription = FeedSubscription::create([
-                'feed_id' => $feed->id,
-                'user_id' => Auth::id(),
-            ]);
-        }
+        ]);
         return $feed;
     }
 
@@ -56,10 +52,6 @@ class SubscriptionController extends Controller
      */
     public function show(FeedSubscription $subscription)
     {
-        // TODO: use policies to enfore this
-        if ($subscription->user_id != Auth::id()) {
-            throw new \Illuminate\Database\Eloquent\ModelNotFoundException();
-        }
         $posts = FeedPost::with('feed')
             ->where([
                 ['user_id', '=', Auth::id()],
@@ -81,13 +73,8 @@ class SubscriptionController extends Controller
      */
     public function unsubscribe(FeedSubscription $subscription)
     {
-        // TODO: use policies to enfore this
-        if ($subscription->user_id != Auth::id()) {
-            throw new \Illuminate\Database\Eloquent\ModelNotFoundException();
-        }
-        $subscription->delete();
         return [
-            'success' => true,
+            'success' => $subscription->delete(),
         ];
     }
 }

@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Log;
-use App\Models\FeedPost;
-use GuzzleHttp\Client;
+use Exception;
 use SimpleXMLElement as Xml;
 use pQuery;
-use Exception;
+use App\Models\FeedPost;
+use GuzzleHttp\Client;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 class Feed extends Model
 {

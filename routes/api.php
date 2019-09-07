@@ -12,15 +12,15 @@
 */
 
 Route::middleware('auth:api')->group(function () {
-    Route::get('feeds', 'Api\FeedController@index');
-    Route::get('feeds/search', 'Api\FeedController@search');
-    Route::post('feeds/{feed}/read', 'Api\FeedController@readAll');
+    Route::get('feeds', 'Api\FeedController@index')->middleware('can:viewAny,App\Models\Feed');
+    Route::get('feeds/search', 'Api\FeedController@search')->middleware('can:viewAny,App\Models\Feed');
+    Route::post('feeds/{feed}/read', 'Api\FeedController@readAll')->middleware('can:update,App\Models\Feed');
 
-    Route::get('posts', 'Api\PostController@index');
-    Route::post('posts/{post}', 'Api\PostController@update');
+    Route::get('posts', 'Api\PostController@index')->middleware('can:viewAny,App\Models\Post');
+    Route::post('posts/{post}', 'Api\PostController@update')->middleware('can:update,post');
 
-    Route::get('subscriptions', 'Api\SubscriptionController@index');
-    Route::post('subscriptions', 'Api\SubscriptionController@create');
-    Route::get('subscriptions/{subscription}', 'Api\SubscriptionController@show');
-    Route::delete('subscriptions/{subscription}', 'Api\SubscriptionController@unsubscribe');
+    Route::get('subscriptions', 'Api\SubscriptionController@index')->middleware('can:viewAny,App\Models\FeedSubscription');
+    Route::post('subscriptions', 'Api\SubscriptionController@create')->middleware('can:create,App\Models\FeedSubscription');
+    Route::get('subscriptions/{subscription}', 'Api\SubscriptionController@show')->middleware('can:view,subscription');
+    Route::delete('subscriptions/{subscription}', 'Api\SubscriptionController@unsubscribe')->middleware('can:delete,subscription');
 });

@@ -8,13 +8,18 @@ use Laravel\Passport\Passport;
 
 class AuthServiceProvider extends ServiceProvider
 {
+    const TOKEN_COOKIE = 'feedle_cookie';
+
     /**
      * The policy mappings for the application.
      *
      * @var array
      */
     protected $policies = [
-        // 'App\Model' => 'App\Policies\ModelPolicy',
+        \App\Models\Feed::class => \App\Policies\FeedPolicy::class,
+        \App\Models\FeedPost::class => \App\Policies\FeedPostPolicy::class,
+        \App\Models\FeedSubscription::class => \App\Policies\FeedSubscriptionPolicy::class,
+        \App\Models\User::class => \App\Policies\UserPolicy::class,
     ];
 
     /**
@@ -28,6 +33,6 @@ class AuthServiceProvider extends ServiceProvider
 
         Passport::routes();
 
-        Passport::cookie('feedle_token');
+        Passport::cookie(self::TOKEN_COOKIE);
     }
 }

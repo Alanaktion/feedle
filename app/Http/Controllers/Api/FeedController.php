@@ -3,16 +3,16 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Feed;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Feed;
 
 class FeedController extends Controller
 {
     /**
      * Get feed list
      *
-     * @return array
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function index()
     {
