@@ -12,11 +12,10 @@
 */
 
 Route::middleware('auth:api')->group(function () {
-    Route::get('feeds', 'Api\FeedController@index')->middleware('can:viewAny,App\Models\Feed');
     Route::get('feeds/search', 'Api\FeedController@search')->middleware('can:viewAny,App\Models\Feed');
     Route::post('feeds/{feed}/read', 'Api\FeedController@readAll')->middleware('can:update,App\Models\Feed');
 
-    Route::get('posts', 'Api\PostController@index')->middleware('can:viewAny,App\Models\Post');
+    Route::get('posts', 'Api\PostController@index')->middleware('can:viewAny,App\Models\FeedPost');
     Route::post('posts/{post}', 'Api\PostController@update')->middleware('can:update,post');
 
     Route::get('subscriptions', 'Api\SubscriptionController@index')->middleware('can:viewAny,App\Models\FeedSubscription');

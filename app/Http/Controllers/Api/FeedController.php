@@ -6,22 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Feed;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class FeedController extends Controller
 {
-    /**
-     * Get feed list
-     *
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public function index()
-    {
-        return Auth::user()->subscriptions()
-            ->with('feed')
-            ->latest()
-            ->get();
-    }
-
     /**
      * Search for feeds to add
      *
@@ -29,6 +17,11 @@ class FeedController extends Controller
      */
     public function search(Request $request)
     {
+        Validator::make($request->all(), [
+            // it may make more sense to validate this differently, via e.g.
+            // a regex matching URLs or hostnames + frontend pattern match.
+            'url' => 'required|string',
+        ])->validate();
         $url = $request->input('url');
         if (substr($url, 0, 4) != 'http') {
             $url = 'http://' . $url;

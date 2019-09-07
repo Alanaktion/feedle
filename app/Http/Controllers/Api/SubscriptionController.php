@@ -20,7 +20,7 @@ class SubscriptionController extends Controller
     public function index()
     {
         return Auth::user()->subscriptions()
-            ->with('feed:id,name,url')
+            ->with('feed:id,title,site_url,url')
             ->latest()
             ->paginate(15);
     }
@@ -36,15 +36,20 @@ class SubscriptionController extends Controller
             'url' => 'required|url',
         ])->validate();
         $feed = Feed::createFromUrl($request->input('url'));
-        FeedSubscription::firstOrCreate([
+        $subscription = FeedSubscription::firstOrCreate([
             'feed_id' => $feed->id,
             'user_id' => Auth::id(),
         ]);
-        return $feed;
+        return response()->json(array_merge(
+            $feed->toArray(),
+            ['subscription_id' => $subscription->id]
+        ), 201);
     }
 
     /**
      * Show a feed subscription detail and post list
+     *
+     * @todo Replace this with a JSON response + Vue component
      *
      * @param FeedSubscription $subscription
      * @param Request $request
