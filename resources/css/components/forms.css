@@ -22,7 +22,7 @@ label {
     @apply text-red-500 text-xs italic;
 }
 
-/* TODO: implement custom checkboxes */
+/* Custom inputs, such as checkboxes */
 .custom-control {
     @apply flex;
 }

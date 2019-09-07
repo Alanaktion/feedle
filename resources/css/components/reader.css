@@ -70,7 +70,6 @@ body {
     @apply text-xs text-gray-700;
 }
 
-/* TODO: determine what portions of the below content to keep */
 .toast {
     bottom: 1rem;
     left: 1rem;
