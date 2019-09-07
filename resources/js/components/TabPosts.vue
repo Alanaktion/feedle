@@ -18,7 +18,7 @@
                 {{ post.title }}
             </div>
             <div class="post-meta">
-                {{ post.feed.name }} &middot;
+                {{ post.feed.title }} &middot;
                 <span :title="post.created_at">
                     {{ dateDisplay(post.created_at) }}
                 </span>

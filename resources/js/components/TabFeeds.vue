@@ -7,7 +7,7 @@
         <div class="feed"
             v-for="subscription in subscriptions" :key="subscription.id">
             <div :title="subscription.feed.url">
-                {{ subscription.feed.name }}
+                {{ subscription.feed.title }}
             </div>
             <div class="feed-meta" :title="subscription.created_at">
                 Subscribed {{ dateDisplay(subscription.created_at) }}

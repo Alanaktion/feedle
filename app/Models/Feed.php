@@ -20,7 +20,7 @@ class Feed extends Model
      */
     const POST_TIME_THRESHOLD = 3600;
 
-    protected $fillable = ['name', 'url', 'site_url'];
+    protected $fillable = ['title', 'url', 'site_url'];
 
     /**
      * Create a feed from an RSS/Atom URL
@@ -41,7 +41,7 @@ class Feed extends Model
             throw new Exception('Invalid feed URL.');
         }
         return self::create([
-            'name' => $meta['title'],
+            'title' => $meta['title'],
             'url' => $meta['url'],
             'site_url' => $meta['site_url'],
         ]);
