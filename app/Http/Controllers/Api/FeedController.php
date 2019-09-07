@@ -22,6 +22,7 @@ class FeedController extends Controller
             // a regex matching URLs or hostnames + frontend pattern match.
             'url' => 'required|string',
         ])->validate();
+        // TODO: ignore strings that are not either valid URLs or hostnames
         $url = $request->input('url');
         if (substr($url, 0, 4) != 'http') {
             $url = 'http://' . $url;

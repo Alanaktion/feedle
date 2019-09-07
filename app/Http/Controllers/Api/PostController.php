@@ -18,7 +18,7 @@ class PostController extends Controller
     public function index()
     {
         return Auth::user()->posts()
-            ->with('feed:id,name')
+            ->with('feed:id,title')
             ->where('is_read', '0')
             ->latest()
             ->paginate(15);

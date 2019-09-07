@@ -24,11 +24,9 @@ class FeedPolicy
     /**
      * Determine whether the user can view the feed.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Feed  $feed
      * @return bool
      */
-    public function view(User $user, Feed $feed): bool
+    public function view(): bool
     {
         return false;
     }
@@ -47,11 +45,9 @@ class FeedPolicy
     /**
      * Determine whether the user can update the feed.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Feed  $feed
      * @return bool
      */
-    public function update(User $user, Feed $feed): bool
+    public function update(): bool
     {
         return false;
     }
@@ -59,11 +55,9 @@ class FeedPolicy
     /**
      * Determine whether the user can delete the feed.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Feed  $feed
      * @return bool
      */
-    public function delete(User $user, Feed $feed): bool
+    public function delete(): bool
     {
         return false;
     }
@@ -71,11 +65,9 @@ class FeedPolicy
     /**
      * Determine whether the user can restore the feed.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Feed  $feed
      * @return bool
      */
-    public function restore(User $user, Feed $feed): bool
+    public function restore(): bool
     {
         return false;
     }
@@ -83,11 +75,9 @@ class FeedPolicy
     /**
      * Determine whether the user can permanently delete the feed.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Feed  $feed
      * @return bool
      */
-    public function forceDelete(User $user, Feed $feed): bool
+    public function forceDelete(): bool
     {
         return false;
     }
