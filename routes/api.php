@@ -20,6 +20,5 @@ Route::middleware('auth:api')->group(function () {
 
     Route::get('subscriptions', 'Api\SubscriptionController@index')->middleware('can:viewAny,App\Models\FeedSubscription');
     Route::post('subscriptions', 'Api\SubscriptionController@create')->middleware('can:create,App\Models\FeedSubscription');
-    Route::get('subscriptions/{subscription}', 'Api\SubscriptionController@show')->middleware('can:view,subscription');
     Route::delete('subscriptions/{subscription}', 'Api\SubscriptionController@unsubscribe')->middleware('can:delete,subscription');
 });

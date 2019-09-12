@@ -47,29 +47,6 @@ class SubscriptionController extends Controller
     }
 
     /**
-     * Show a feed subscription detail and post list
-     *
-     * @todo Replace this with a JSON response + Vue component
-     *
-     * @param FeedSubscription $subscription
-     * @param Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function show(FeedSubscription $subscription)
-    {
-        $posts = FeedPost::with('feed')
-            ->where([
-                ['user_id', '=', Auth::id()],
-                ['feed_id', '=', $subscription->feed_id],
-            ])
-            ->get();
-        return view('ajax.feed-subscription', [
-            'subscription' => $subscription,
-            'posts' => $posts
-        ]);
-    }
-
-    /**
      * Unsubscribe the user from a feed
      *
      * @param FeedSubscription $feed

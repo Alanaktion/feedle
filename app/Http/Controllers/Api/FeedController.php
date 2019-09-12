@@ -17,12 +17,20 @@ class FeedController extends Controller
      */
     public function search(Request $request)
     {
-        Validator::make($request->all(), [
-            // it may make more sense to validate this differently, via e.g.
-            // a regex matching URLs or hostnames + frontend pattern match.
-            'url' => 'required|string',
-        ])->validate();
-        // TODO: ignore strings that are not either valid URLs or hostnames
+        $vUrl = Validator::make($request->all(), [
+            'url' => ['required', 'string'],
+        ]);
+        $vHost = Validator::make($request->all(), [
+            'url' => [
+                'required',
+                'regex' => '/^(([a-z0-9]|[a-z0-9][a-z0-9\-]*[a-z0-9])\\.)*([a-z0-9]|[a-z0-9][a-z0-9\-]*[a-z0-9])$/i',
+            ],
+        ]);
+
+        if ($vUrl->fails()) {
+            $vHost->validate();
+        }
+
         $url = $request->input('url');
         if (substr($url, 0, 4) != 'http') {
             $url = 'http://' . $url;

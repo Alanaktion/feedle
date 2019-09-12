@@ -12,7 +12,6 @@
 */
 
 Route::get('/', 'IndexController@index')->name('index');
-Route::get('favicon/{host}', 'ProxyController@favicon')->name('favicon');
 
 Auth::routes();
 
