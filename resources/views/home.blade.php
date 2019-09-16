@@ -6,5 +6,4 @@
     user-name="{{ Auth::user()->name }}"
 ></app-nav>
 <app-reader></app-reader>
-@include('blocks.toast-dom')
 @endsection
