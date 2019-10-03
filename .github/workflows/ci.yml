@@ -1,0 +1,57 @@
+name: Laravel CI
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  phpunit:
+    name: Ubuntu PHP ${{ matrix.php-version }}
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: true
+          MYSQL_ROOT_PASSWORD: ''
+          MYSQL_DATABASE: feedle
+        ports:
+          - 3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+    strategy:
+      fail-fast: false
+      php-version: ['7.2', '7.3']
+
+    steps:
+    - uses: actions/checkout@v1
+      with:
+        fetch-depth: 1
+
+    - name: Use PHP ${{ matrix.php-version }}
+      uses: shivammathur/setup-php@1.3.7
+      with:
+        php-version: ${{ matrix.php-version }}
+        extension-csv: mbstring
+
+    - name: Install dependencies
+      run: |
+        composer install --no-interaction --prefer-dist --no-suggest
+        npm ci
+    - name: Prepare Laravel Application
+      run: |
+        cp .env.testing .env
+        php artisan migrate --no-interaction -vvv
+      env:
+        DB_PORT: ${{ job.services.mysql.ports['3306'] }}
+    - name: Compile assets
+      run: |
+        npm run production --progress false
+    - name: Run tests
+      run: |
+        vendor/bin/phpcs --standard=Generic --sniffs=Generic.Commenting.Todo,Generic.CodeAnalysis.UnusedFunctionParameter,Generic.CodeAnalysis.EmptyStatement,Generic.PHP.DeprecatedFunctions app/
+        vendor/bin/phpcs --standard=PSR12 app/
+        vendor/bin/phpunit
+      env:
+        DB_PORT: ${{ job.services.mysql.ports['3306'] }}
+    - name: Output logs
+      run: test -n "$(find storage/logs -name '*.log' -print -quit)" && cat storage/logs/*.log
