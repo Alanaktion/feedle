@@ -20,7 +20,8 @@ jobs:
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     strategy:
       fail-fast: false
-      php-version: ['7.2', '7.3']
+      matrix:
+        php-version: ['7.2', '7.3']
 
     steps:
     - uses: actions/checkout@v1
