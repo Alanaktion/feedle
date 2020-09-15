@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "ikappas.phpcs",
+        "octref.vetur",
+        "bmewburn.vscode-intelephense-client",
+        "bradlc.vscode-tailwindcss"
+    ]
+}

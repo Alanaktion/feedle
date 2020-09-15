@@ -10,7 +10,7 @@ class ApiTest extends TestCase
 {
     use RefreshDatabase;
 
-    const XKCD_FEED = [
+    public const XKCD_FEED = [
         'site_url' => 'https://xkcd.com/',
         'title' => 'xkcd.com',
         'url' => 'https://xkcd.com/atom.xml',
@@ -37,7 +37,7 @@ class ApiTest extends TestCase
      */
     public function testFeedSearchWebsite(): void
     {
-        $response = $this->actingAs($this->user, 'api')
+        $response = $this->actingAs($this->user, 'sanctum')
             ->json('GET', '/api/feeds/search', [
                 'url' => 'https://xkcd.com',
             ]);
@@ -55,7 +55,7 @@ class ApiTest extends TestCase
      */
     public function testFeedSearchFeedUrl(): void
     {
-        $response = $this->actingAs($this->user, 'api')
+        $response = $this->actingAs($this->user, 'sanctum')
             ->json('GET', '/api/feeds/search', [
                 'url' => 'https://xkcd.com/atom.xml',
             ]);
@@ -73,7 +73,7 @@ class ApiTest extends TestCase
      */
     public function testSubscribe(): void
     {
-        $response = $this->actingAs($this->user, 'api')
+        $response = $this->actingAs($this->user, 'sanctum')
             ->json('POST', '/api/subscriptions', [
                 'url' => 'https://xkcd.com/atom.xml',
             ]);
@@ -90,12 +90,12 @@ class ApiTest extends TestCase
      */
     public function testSubscriptions()
     {
-        $this->actingAs($this->user, 'api')
+        $this->actingAs($this->user, 'sanctum')
             ->json('POST', '/api/subscriptions', [
                 'url' => 'https://xkcd.com/atom.xml',
             ]);
 
-        $response = $this->actingAs($this->user, 'api')
+        $response = $this->actingAs($this->user, 'sanctum')
             ->json('GET', '/api/subscriptions');
 
         $response

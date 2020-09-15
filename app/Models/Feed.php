@@ -184,9 +184,11 @@ class Feed extends Model
             }
 
             foreach ($subscriptions as $sub) {
-                if ($post['ts'] &&
+                if (
+                    $post['ts'] &&
                     $sub->created_at &&
-                    $post['ts'] < strtotime($sub->created_at) - self::POST_TIME_THRESHOLD) {
+                    $post['ts'] < strtotime($sub->created_at) - self::POST_TIME_THRESHOLD
+                ) {
                     // Post is older than subscription
                     continue;
                 }
