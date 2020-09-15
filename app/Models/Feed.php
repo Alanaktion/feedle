@@ -20,7 +20,7 @@ class Feed extends Model
      *
      * This allows for some leniency with inaccurate timestamps.
      */
-    const POST_TIME_THRESHOLD = 3600;
+    public const POST_TIME_THRESHOLD = 3600;
 
     protected $fillable = ['title', 'url', 'site_url'];
 
@@ -82,7 +82,10 @@ class Feed extends Model
                 ];
             }
             foreach ($xml->link as $link) {
-                if (!isset($link->attributes()['rel'])) {
+                if (
+                    !isset($link->attributes()['rel'])
+                    || ($link->attributes()['rel'] == 'alternate') && !isset($link->attributes()['type'])
+                ) {
                     $siteUrl = (string)$link->attributes()['href'];
                     break;
                 }
