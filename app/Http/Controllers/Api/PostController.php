@@ -28,7 +28,7 @@ class PostController extends Controller
             ->with('feed:id,title')
             ->where('is_read', '0')
             ->latest()
-            ->paginate(15);
+            ->paginate(30);
     }
 
     /**
