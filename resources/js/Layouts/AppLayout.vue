@@ -1,6 +1,6 @@
 <template>
     <div class="min-h-screen bg-gray-100">
-        <nav class="bg-white border-b border-gray-100 shadow">
+        <nav class="bg-white border-b border-gray-100 sticky shadow top-0">
             <!-- Primary Navigation Menu -->
             <div class="px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between h-16">
@@ -33,7 +33,7 @@
                                 <template #content>
                                     <!-- Account Management -->
                                     <div class="block px-4 py-2 text-xs text-gray-400">
-                                        Manage Account
+                                        Manage account
                                     </div>
 
                                     <jet-dropdown-link href="/user/profile">
@@ -41,7 +41,7 @@
                                     </jet-dropdown-link>
 
                                     <jet-dropdown-link href="/user/api-tokens" v-if="$page.jetstream.hasApiFeatures">
-                                        API Tokens
+                                        API tokens
                                     </jet-dropdown-link>
 
                                     <div class="border-t border-gray-100"></div>
@@ -49,7 +49,7 @@
                                     <!-- Authentication -->
                                     <form @submit.prevent="logout">
                                         <jet-dropdown-link as="button">
-                                            Logout
+                                            Log out
                                         </jet-dropdown-link>
                                     </form>
                                 </template>
@@ -96,13 +96,13 @@
                         </jet-responsive-nav-link>
 
                         <jet-responsive-nav-link href="/user/api-tokens" :active="$page.currentRouteName == 'api-tokens.index'" v-if="$page.jetstream.hasApiFeatures">
-                            API Tokens
+                            API tokens
                         </jet-responsive-nav-link>
 
                         <!-- Authentication -->
                         <form method="POST" @submit.prevent="logout">
                             <jet-responsive-nav-link as="button">
-                                Logout
+                                Log out
                             </jet-responsive-nav-link>
                         </form>
                     </div>

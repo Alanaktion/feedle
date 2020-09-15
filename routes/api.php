@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Api\FeedController;
 use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\SubscriptionController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,8 +18,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('feeds/search', 'Api\FeedController@search')->middleware('can:viewAny,App\Models\Feed');
-    Route::post('feeds/{feed}/read', 'Api\FeedController@readAll')->middleware('can:update,App\Models\Feed');
+    Route::get('user', UserController::class);
+
+    Route::get('feeds/search', [FeedController::class, 'search']);
+    Route::post('feeds/{feed}/read', [FeedController::class, 'readAll'])
+        ->middleware('can:update,App\Models\Feed');
 
     Route::resource('posts', PostController::class)
         ->only(['index', 'update']);
