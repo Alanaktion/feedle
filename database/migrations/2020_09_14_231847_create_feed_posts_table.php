@@ -23,7 +23,7 @@ class CreateFeedPostsTable extends Migration
             $table->boolean('is_read')->default(false);
             $table->string('url');
             $table->string('guid');
-            $table->unique(['guid', 'user_id'], 'feed_posts_guid_user_unique');
+            $table->unique(['guid', 'feed_id', 'user_id'], 'feed_posts_guid_feed_user_unique');
             $table->timestamp('created_at');
         });
     }

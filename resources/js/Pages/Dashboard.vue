@@ -27,20 +27,21 @@
                         </svg>
                     </jet-secondary-button>
                 </div>
-                <div class="flex-grow overflow-auto pt-4 bg-gray-50">
-                    <!-- TODO: show posts/feeds here -->
+                <div class="flex-grow overflow-auto bg-gray-50">
+                    <post-list v-show="view === 'posts'" @select="selectPost" />
+                    <feed-list v-show="view === 'feeds'" @select="selectFeed" />
                 </div>
             </div>
             <!-- TODO: set z-index of this to -1 when menus are open (fixes click to dismiss): -->
             <div class="flex-1 relative" ref="content">
-                <div class="py-12" v-if="showWelcome">
+                <div class="py-12" v-if="showWelcome || true">
                     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                            <Welcome @add-feed="addModalVisible = true" @import-opml="importOPML" />
+                            <welcome @add-feed="addModalVisible = true" @import-opml="importOPML" />
                         </div>
                     </div>
                 </div>
-                <iframe src="about:blank" frameborder="0" class="absolute inset-0"
+                <iframe src="about:blank" frameborder="0" class="absolute inset-0 w-full h-full"
                     ref="content-frame"
                     v-else
                 ></iframe>
@@ -56,6 +57,8 @@
     import Welcome from './../Feedle/Welcome'
     import JetSecondaryButton from './../Jetstream/SecondaryButton'
     import AddFeedModal from './../Feedle/AddFeedModal'
+    import FeedList from './../Feedle/FeedList'
+    import PostList from './../Feedle/PostList'
 
     export default {
         components: {
@@ -63,6 +66,8 @@
             Welcome,
             JetSecondaryButton,
             AddFeedModal,
+            FeedList,
+            PostList,
         },
         data: () => ({
             view: 'posts',
@@ -77,7 +82,15 @@
         },
         methods: {
             importOPML() {
+                console.log('OPML import clicked');
                 // TODO: start OPML import
+            },
+            selectPost(post) {
+                this.$refs['content-frame'].src = post.url;
+            },
+            selectFeed(subscription) {
+                console.log(subscription.feed.title);
+                // When a subscription is selected
             },
         },
         mounted() {

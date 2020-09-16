@@ -20,15 +20,21 @@ class PostController extends Controller
      *
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function index()
+    public function index(Request $request)
     {
+        $request->validate([
+            'is_read' => 'sometimes|bool',
+        ]);
+
         /** @var \App\Models\User $user */
         $user = Auth::user();
-        return $user->posts()
+        $posts = $user->posts()
             ->with('feed:id,title')
-            ->where('is_read', '0')
-            ->latest()
-            ->paginate(30);
+            ->latest();
+        if ($request->has('is_read')) {
+            $posts->where('is_read', $request->boolean('is_read'));
+        }
+        return $posts->paginate(30);
     }
 
     /**

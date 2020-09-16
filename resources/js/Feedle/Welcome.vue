@@ -23,7 +23,7 @@
                         Get started following blogs, webcomics, and news by subscribing to an RSS or Atom feed.
                     </div>
 
-                    <Button @click="$emit('add-feed')">
+                    <Button @click.native="$emit('add-feed')">
                         Add a Feed
                     </Button>
                 </div>
@@ -42,7 +42,7 @@
                         If you're coming from another feed aggregator, you can migrate easily by selecting an OPML export from your old aggregator.
                     </div>
 
-                    <SecondaryButton @click="$emit('import-opml')">
+                    <SecondaryButton @click.native="$emit('import-opml')">
                         Import OPML
                     </SecondaryButton>
                 </div>
