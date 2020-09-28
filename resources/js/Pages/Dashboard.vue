@@ -34,7 +34,7 @@
             </div>
             <!-- TODO: set z-index of this to -1 when menus are open (fixes click to dismiss): -->
             <div class="flex-1 relative" ref="content">
-                <div class="py-12" v-if="showWelcome || true">
+                <div class="py-12" v-if="showWelcome">
                     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                             <welcome @add-feed="addModalVisible = true" @import-opml="importOPML" />

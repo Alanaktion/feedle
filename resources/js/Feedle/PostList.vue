@@ -1,12 +1,13 @@
 <template>
     <div class="p-2">
-        <div class="p-2 rounded"
+        <a class="block p-2 rounded select-none"
             :class="{
                 'bg-indigo-500': post.id === selected,
             }"
+            :href="post.url"
             v-for="post in posts"
             :key="post.id"
-            @click="selected = post.id">
+            @click.exact.prevent="selected = post.id">
             <div
                 :class="{
                     'text-gray-900': post.id !== selected,
@@ -23,7 +24,7 @@
                 &middot;
                 {{ dateFormat(post.created_at) }}
             </div>
-        </div>
+        </a>
     </div>
 </template>
 
